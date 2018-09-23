@@ -1,0 +1,31 @@
+<!--pages/score/score.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells weui-cells_after-title" style="margin-top:10px">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">分数</view>
+        <view class="weui-cell__ft">{{score.score}}</view>
+      </view>
+
+      <view class="weui-cell">
+        <view class="weui-cell__bd">加分人</view>
+        <view class="weui-cell__ft">Seven</view>
+      </view>
+
+      <view class="weui-cell">
+        <view class="weui-cell__bd">加分时间</view>
+        <view class="weui-cell__ft">{{score.addDate}}</view>
+      </view>
+
+    </view>
+
+    <view class="weui-article">
+      <view class="weui-article__h1">理由</view>
+      <view class="weui-article__section">
+        <view class="weui-article__p">
+          {{score.reason}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

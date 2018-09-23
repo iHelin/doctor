@@ -1,0 +1,30 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/history/history"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Seven",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#000000",
+        "selectedColor": "#aee",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "iconPath": "images/index.png",
+                "selectedIconPath": "images/index_1.png",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/history/history",
+                "iconPath": "images/history.png",
+                "selectedIconPath": "images/history_1.png",
+                "text": "历史记录"
+            }
+        ]
+    }
+}

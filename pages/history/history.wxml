@@ -1,0 +1,3 @@
+<map style="width:100%;height:800rpx;" bindmarkertap="markertap" longitude="{{longitude}}" latitude="{{latitude}}">
+</map>
+<button bindtap='scan'>扫一扫</button>

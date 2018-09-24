@@ -6,7 +6,6 @@
         </swiper-item>
     </block>
 </swiper>
-<van-button type="primary">按钮</van-button>
 <button bindtap='playMusic'>播放音乐</button>
 <button open-type='contact'>联系我</button>
 <button bindtap='copy'>复制内容</button>

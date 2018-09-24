@@ -8,10 +8,8 @@ Page({
             'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
             'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
         ],
-        indicatorDots: false,
-        autoplay: false,
-        interval: 5000,
-        duration: 1000,
+        indicatorDots: true,
+        autoplay: true,
         proList: [{
                 logo: '/images/history_1.png',
                 title: 'dwed',

@@ -6,21 +6,9 @@
         </swiper-item>
     </block>
 </swiper>
-<view class='items-list'>
-    <view class='pro-item' wx:for="{{proList}}" wx:key="{{index}}" bindtap='toDetail' data-index='{{index}}'>
-        <image class='pro-logo' src='{{item.logo}}'></image>
-        <view class='pro-body'>
-            <view class='pro-title'>{{item.title}}</view>
-            <text class='pro-desc'>{{item.desc}}</text>
-            <text class='pro-desc'>\n{{index+1}}</text>
-            <view class='pro-footer'>
-                <image src='/images/history_1.png' class='btn-detail'></image>
-                <button open-type='contact' class='btn-ask'>
-                <image src='/images/index_1.png'></image>
-                </button>
-                
-            </view>
-        </view>
-    </view>
-</view>
+<van-button type="primary">按钮</van-button>
+<button bindtap='playMusic'>播放音乐</button>
+<button open-type='contact'>联系我</button>
 <button bindtap='copy'>复制内容</button>
+<button bindtap='login'>登录</button>
+<button open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">UserInfo</button>

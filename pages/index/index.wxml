@@ -6,8 +6,4 @@
         </swiper-item>
     </block>
 </swiper>
-<button bindtap='playMusic'>播放音乐</button>
-<button open-type='contact'>联系我</button>
-<button bindtap='copy'>复制内容</button>
-<button bindtap='login'>登录</button>
 <button open-type='getUserInfo' lang="zh_CN" bindgetuserinfo="onGotUserInfo">UserInfo</button>

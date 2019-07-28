@@ -9,10 +9,12 @@
 		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.3.0",
+	"libVersion": "2.7.7",
 	"appid": "wxa7d535e9a51b5cf1",
 	"projectname": "seven",
 	"scripts": {},
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -34,9 +36,10 @@
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
-					"name": "history",
-					"pathName": "pages/history/history"
+					"id": 0,
+					"name": "list",
+					"pathName": "pages/list/list",
+					"query": ""
 				}
 			]
 		}

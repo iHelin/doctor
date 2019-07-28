@@ -4,9 +4,7 @@ var app = getApp()
 Page({
     data: {
         imgUrls: [
-            'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-            'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-            'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+          
         ],
         indicatorDots: true,
         autoplay: true,
@@ -28,9 +26,6 @@ Page({
 
     onShow: function() {
 
-    },
-    toDetail: function(e) {
-        var index = e.currentTarget.dataset.index;
     },
     copy: function() {
         wx.setClipboardData({
@@ -75,10 +70,11 @@ Page({
         })
     },
     onGotUserInfo: function(res) {
-        console.log(res);
-        var userInfo = res.detail.userInfo
-        var nickName = userInfo.nickName
-        var avatarUrl = userInfo.avatarUrl
+        var userInfo = res.detail.userInfo;
+        var nickName = userInfo.nickName;
+        var avatarUrl = userInfo.avatarUrl;
+        wx.setStorageSync("nickName", nickName);
+        wx.setStorageSync("avatarUrl", avatarUrl);
         var gender = userInfo.gender //性别 0：未知、1：男、2：女
         var province = userInfo.province
         var city = userInfo.city

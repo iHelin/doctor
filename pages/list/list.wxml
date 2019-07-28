@@ -1,0 +1,5 @@
+<view class="section">
+  <i-input value="{{ nickName }}" title="用户名" placeholder="用户名" disabled />
+  <i-input value="{{ msg }}" type="textarea" title="弹幕详情" placeholder="请输入弹幕详情(最多50字)" bind:change="handleMsgChange" maxlength="50" />
+</view>
+<i-button type="primary" bind:click="handleClick">提交</i-button>

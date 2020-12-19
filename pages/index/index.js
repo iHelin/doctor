@@ -1,90 +1,204 @@
-//index.js
-//获取应用实例
-var app = getApp()
+import request from '../../utils/request'
+
 Page({
     data: {
-        imgUrls: [
-          
-        ],
-        indicatorDots: true,
-        autoplay: true,
-        proList: [{
-                logo: '/images/history_1.png',
-                title: 'dwed',
-                desc: 'sdcsav'
-            },
-            {
-                logo: '/images/history_1.png',
-                title: 'dwed',
-                desc: 'sdcsav'
-            }
-        ]
-    },
-    onLoad: function() {
-
+        user_name: '赖信高',
+        id_card: '510321196909141856',
+        tel: '13619020598',
+        request_day: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
+        list: null,
+        doctor_name_list: ['唐晓文', '王荧'],
+        doctor_code_list: ['00577', '02517'],
+        doctor_index: 0,
+        doctor_code: '',
+        // theme:'dark'
     },
 
-    onShow: function() {
-
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+        let user_name = wx.getStorageSync('user_name');
+        let id_card = wx.getStorageSync('id_card');
+        let tel = wx.getStorageSync('tel');
+        let doctor_code = this.data.doctor_code_list[this.data.doctor_index];
+        this.setData({
+            doctor_code
+        });
+        if (user_name) {
+            this.setData({
+                user_name
+            })
+        }
+        if (id_card) {
+            this.setData({
+                id_card
+            })
+        }
+        if (tel) {
+            this.setData({
+                tel
+            })
+        }
     },
-    copy: function() {
-        wx.setClipboardData({
-            data: '18321558223',
-            success: function() {
+
+    handleUsername(event) {
+        let user_name = event.detail.value;
+        // wx.setStorageSync('user_name', user_name);
+        this.setData({
+            user_name
+        });
+    },
+    handleIdCard(event) {
+        let id_card = event.detail.value;
+        // wx.setStorageSync('id_card', id_card);
+        this.setData({
+            id_card
+        });
+    },
+    handleTel(event) {
+        let tel = event.detail.value;
+        // wx.setStorageSync('tel', tel);
+        this.setData({
+            tel
+        });
+    },
+    handleRequestDay(event) {
+        let request_day = event.detail.value
+        this.setData({
+            request_day
+        });
+    },
+    handleDoctor(event) {
+        let doctor_index = event.detail.value >>> 0;
+        let doctor_code = this.data.doctor_code_list[doctor_index];
+        this.setData({
+            doctor_index,
+            doctor_code
+        });
+    },
+
+    search() {
+        if (!this.data.user_name) {
+            wx.showToast({
+                title: '请输入姓名',
+                icon: 'error'
+            })
+            return;
+        }
+        wx.setStorageSync('user_name', this.data.user_name);
+
+        if (!this.data.id_card) {
+            wx.showToast({
+                title: '请输入身份证号',
+                icon: 'error'
+            })
+            return;
+        }
+        wx.setStorageSync('id_card', this.data.id_card);
+
+        if (!this.data.tel) {
+            wx.showToast({
+                title: '请输入联系电话',
+                icon: 'error'
+            })
+            return;
+        }
+        wx.setStorageSync('tel', this.data.tel);
+
+        let request_day = this.data.request_day;
+        if (!request_day) {
+            wx.showToast({
+                title: '请选择日期',
+                icon: 'error'
+            })
+            return;
+        }
+
+        let hospital = '1';
+        let unit_code = '1010701';
+        let doctor_code = this.data.doctor_code;
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        });
+        request('/WebCall/getAllDoctorDetail', {
+            hospital,
+            request_day,
+            unit_code,
+            doctor_code
+        }).then(result => {
+            wx.hideLoading();
+            if (result) {
+                this.setData({
+                    list: result
+                });
+            } else {
                 wx.showToast({
-                    title: '复制成功'
+                    title: '无排班信息',
+                    icon: 'error'
+                });
+                this.setData({
+                    list: []
                 });
             }
-        })
+        }).catch(e => {
+            wx.hideLoading();
+            console.error(e);
+            wx.showToast({
+                title: e.errMsg,
+                icon: 'error'
+            })
+        });
     },
-    login: function() {
-        wx.login({
-            success: res => {
-                var code = res.code;
-                console.log(code);
-                if (code) {
-                    wx.request({
-                        url: app.globalData.request + '/wechat/login',
-                        data: {
-                            code: code
-                        },
-                        success: function(res) {
-                            wx.showToast({
-                                title: '登录成功'
-                            });
-                            wx.setStorageSync('loginKey', res.data);
-                        },
-                        fail: function(e) {
-                            console.log(e);
-                            wx.showToast({
-                                title: '登录失败'
-                            });
-                        }
-                    })
-                } else {
-                    wx.showToast({
-                        title: '获取code失败'
-                    });
-                }
-            }
-        })
+
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
+
     },
-    onGotUserInfo: function(res) {
-        var userInfo = res.detail.userInfo;
-        var nickName = userInfo.nickName;
-        var avatarUrl = userInfo.avatarUrl;
-        wx.setStorageSync("nickName", nickName);
-        wx.setStorageSync("avatarUrl", avatarUrl);
-        var gender = userInfo.gender //性别 0：未知、1：男、2：女
-        var province = userInfo.province
-        var city = userInfo.city
-        var country = userInfo.country
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+
     },
-    playMusic:function(){
-        wx.playBackgroundAudio({
-            dataUrl: 'https://www.ianhe.me/static/ShapeofYou.mp3',
-            title: 'Shape of You',
-            coverImgUrl: 'http://r1.ykimg.com/050E0000576B75F667BC3C136B06E4E7'
-        })
+
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function () {
+
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
+
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function () {
+
+    },
+
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function () {
+
     }
 })

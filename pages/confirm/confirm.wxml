@@ -1,0 +1,52 @@
+<!--pages/confirm/confirm.wxml-->
+<view class="page" data-weui-theme="{{theme}}">
+  <!-- <view class="page__hd">
+    <view class="page__title">List</view>
+    <view class="page__desc">列表</view>
+  </view> -->
+  <view class="page__bd">
+    <view class="weui-cells__title">挂号信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <!-- <view class="weui-cell">
+        <view class="weui-cell__bd">就诊医院</view>
+        <view class="weui-cell__ft">{{doctor_name}}</view>
+      </view> -->
+      <view class="weui-cell">
+        <view class="weui-cell__bd">医生姓名</view>
+        <view class="weui-cell__ft">{{doctor_name}}</view>
+      </view>
+      <!-- <view class="weui-cell">
+        <view class="weui-cell__bd">挂号科室</view>
+        <view class="weui-cell__ft">{{doctor_name}}</view>
+      </view> -->
+      <view class="weui-cell">
+        <view class="weui-cell__bd">挂号日期</view>
+        <view class="weui-cell__ft">{{request_day}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">取号时间</view>
+        <view class="weui-cell__ft">{{start_time}} - {{end_time}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">挂号费用</view>
+        <view class="weui-cell__ft">{{clinic_fee}}</view>
+      </view>
+    </view>
+    <view class="weui-cells__title">就诊信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">姓名</view>
+        <view class="weui-cell__ft">{{user_name}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">身份证号</view>
+        <view class="weui-cell__ft">{{id_card}}</view>
+      </view>
+    </view>
+
+    <view class="button-sp-area">
+      <button class="weui-btn weui-btn_primary" type="primary" bindtap="finishOrder">确认</button>
+    </view>
+
+  </view>
+</view>

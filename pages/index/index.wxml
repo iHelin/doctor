@@ -58,13 +58,16 @@
         </view>
 
         <view wx:if="{{list && list.length>0}}">
-            <view  class="weui-cells weui-cells_after-title">
-                <navigator wx:for="{{list}}" wx:key="startTime"
-                        url="/pages/confirm/confirm?request_day={{request_day}}&clinic_fee={{item.clinic_fee}}&doctor_code={{item.doctor_code}}&start_time={{item.startTime}}&end_time={{item.endTime}}&ampm={{item.ampm}}&doctor_name={{item.doctor_name}}"
-                        class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cells weui-cells_after-title">
+                <view wx:for="{{list}}"
+                      wx:key="startTime"
+                      data-item="{{item}}"
+                      bindtap="navigateToFinishOrder"
+                      class="weui-cell weui-cell_access"
+                      hover-class="weui-cell_active">
                     <view class="weui-cell__bd">{{item.startTime}} - {{item.endTime}}</view>
                     <view class="weui-cell__ft weui-cell__ft_in-access">{{item.leftNum}} / {{item.totalNum}}</view>
-                </navigator>
+                </view>
             </view>
         </view>
 

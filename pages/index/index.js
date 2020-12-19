@@ -152,6 +152,15 @@ Page({
         });
     },
 
+    navigateToFinishOrder(event) {
+        let item = event.currentTarget.dataset.item;
+        if (item.leftNum > 0) {
+            let url = `/pages/confirm/confirm?request_day=${this.data.request_day}&clinic_fee=${item.clinic_fee}&doctor_code=${item.doctor_code}&start_time=${item.startTime}&end_time=${item.endTime}&ampm=${item.ampm}&doctor_name=${item.doctor_name}`;
+            wx.navigateTo({
+                url
+            })
+        }
+    },
 
     /**
      * 生命周期函数--监听页面初次渲染完成

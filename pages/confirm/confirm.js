@@ -44,9 +44,13 @@ Page({
     },
 
     finishOrder() {
-        let sex = this.data.id_card[this.data.id_card.length - 2] >>> 0 % 2 == 0 ? '0' : '1';
+        let sex = this.data.id_card[this.data.id_card.length - 2] >>> 0 % 2 === 0 ? '0' : '1';
         let born = this.data.id_card.slice(6, 10) + '-' + this.data.id_card.slice(10, 12) + '-' + this.data.id_card.slice(12, 14);
 
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        });
         request('/OrderRegApi/finishOrder', {
             'hospital': this.data.hospital,
             'response_type': '1',
@@ -66,6 +70,7 @@ Page({
             'born': born,
             'tel': this.data.tel
         }).then(result => {
+            wx.hideLoading();
             if (result.code === '0') {
                 wx.showToast({
                     title: result.msg,
@@ -83,13 +88,12 @@ Page({
                 });
             }
         }).catch(e => {
+            wx.hideLoading();
             console.log(e);
             wx.showToast({
                 title: e.errMsg,
                 icon: 'none'
             });
-        }).finally(_ => {
-            wx.hideLoading();
         })
     },
 

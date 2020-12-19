@@ -59,8 +59,8 @@
       "list": [
         {
           "id": 0,
-          "name": "list",
-          "pathName": "pages/list/list",
+          "name": "me",
+          "pathName": "pages/me/me",
           "query": ""
         }
       ]

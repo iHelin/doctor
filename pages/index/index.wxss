@@ -1,9 +1,5 @@
 /* pages/index/index.wxss */
 
-/* .page { */
-/* background-color: var(--weui-BG-2) */
-/* } */
-
 .no-msg {
     text-align: center;
 }

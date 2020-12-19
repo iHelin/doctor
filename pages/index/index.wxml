@@ -7,7 +7,9 @@
                     <view class="weui-cells__title">挂号</view>
                     <view class="weui-cells weui-cells_form">
                         <view class="weui-cell weui-cell_active">
-                            <view class="weui-cell__hd"><label class="weui-label">姓名</label></view>
+                            <view class="weui-cell__hd">
+                                <label class="weui-label">姓名</label>
+                            </view>
                             <view class="weui-cell__bd">
                                 <input class="weui-input" value="{{user_name}}" bindinput="handleUsername"
                                        placeholder="填写姓名"/>
@@ -15,14 +17,17 @@
                         </view>
                         <view class="weui-cell weui-cell_active">
                             <view class="weui-cell__hd">
-                                <label class="weui-label">身份证号</label></view>
+                                <label class="weui-label">身份证号</label>
+                            </view>
                             <view class="weui-cell__bd">
                                 <input value="{{id_card}}" bindinput="handleIdCard" class="weui-input"
                                        placeholder="填写身份证号"/>
                             </view>
                         </view>
                         <view class="weui-cell weui-cell_active">
-                            <view class="weui-cell__hd"><label class="weui-label">联系电话</label></view>
+                            <view class="weui-cell__hd">
+                                <label class="weui-label">联系电话</label>
+                            </view>
                             <view class="weui-cell__bd">
                                 <input value="{{tel}}" bindinput="handleTel" class="weui-input" placeholder="填写联系电话"
                                        type="number"
@@ -31,7 +36,9 @@
                         </view>
 
                         <view class="weui-cell weui-cell_active">
-                            <view class="weui-cell__hd"><label class="weui-label">医生</label></view>
+                            <view class="weui-cell__hd">
+                                <label class="weui-label">医生</label>
+                            </view>
                             <view class="weui-cell__bd">
                                 <picker range="{{doctor_name_list}}" value="{{doctor_index}}" bindchange="handleDoctor"
                                         style="margin-bottom:0;">
@@ -41,7 +48,9 @@
                         </view>
 
                         <view class="weui-cell weui-cell_active">
-                            <view class="weui-cell__hd"><label class="weui-label">日期</label></view>
+                            <view class="weui-cell__hd">
+                                <label class="weui-label">日期</label>
+                            </view>
                             <view class="weui-cell__bd">
                                 <picker mode="date" value="{{request_day}}" bindchange="handleRequestDay">
                                     {{request_day}}

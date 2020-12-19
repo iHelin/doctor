@@ -6,22 +6,28 @@
                     <view class="weui-cells__title">表单组标题</view>
                     <view class="weui-cells weui-cells_form">
                         <view class="weui-cell weui-cell_active">
-                            <view class="weui-cell__hd"><label class="weui-label">姓名</label></view>
+                            <view class="weui-cell__hd">
+                                <label class="weui-label">姓名</label>
+                            </view>
                             <view class="weui-cell__bd">
-                                <input id="js_input" class="weui-input" placeholder="姓名" />
+                                <input id="js_input" class="weui-input" placeholder="姓名"/>
                             </view>
                         </view>
                         <view class="weui-cell weui-cell_active">
-                            <view class="weui-cell__hd"><label class="weui-label">身份证号</label></view>
+                            <view class="weui-cell__hd">
+                                <label class="weui-label">身份证号</label>
+                            </view>
                             <view class="weui-cell__bd">
-                                <input id="js_input" class="weui-input" placeholder="身份证号" />
+                                <input id="js_input" class="weui-input" placeholder="身份证号"/>
                             </view>
                         </view>
                         <view class="weui-cell weui-cell_active">
-                            <view class="weui-cell__hd"><label class="weui-label">联系电话</label></view>
+                            <view class="weui-cell__hd">
+                                <label class="weui-label">联系电话</label>
+                            </view>
                             <view class="weui-cell__bd">
                                 <input id="js_input" class="weui-input" placeholder="填写绑定的电话号码" type="number"
-                                    pattern="[0-9]*" />
+                                       pattern="[0-9]*"/>
                             </view>
                         </view>
                     </view>

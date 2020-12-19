@@ -44,31 +44,33 @@ Page({
     },
 
     finishOrder() {
-        let sex = this.data.id_card[this.data.id_card.length - 2] >>> 0 % 2 === 0 ? '0' : '1';
-        let born = this.data.id_card.slice(6, 10) + '-' + this.data.id_card.slice(10, 12) + '-' + this.data.id_card.slice(12, 14);
+        let id_card = this.data.id_card;
+        let sex = id_card[id_card.length - 2] >>> 0 % 2 === 0 ? '0' : '1';
+        let born = id_card.slice(6, 10) + '-' + id_card.slice(10, 12) + '-' + this.data.id_card.slice(12, 14);
 
         wx.showLoading({
             title: '加载中',
             mask: true
         });
         request('/OrderRegApi/finishOrder', {
-            'hospital': this.data.hospital,
-            'response_type': '1',
-            'id_card': this.data.id_card,
-            'request_day': this.data.request_day,
-            'unit_code': this.data.unit_code,
-            'doctor_code': this.data.doctor_code,
-            'ampm': this.data.ampm,
-            'charge_type': this.data.charge_type,
-            'clinic_fee': this.data.clinic_fee,
-            'pre_type': '6',
-            'start_time': this.data.start_time,
-            'end_time': this.data.end_time,
-            'user_name': this.data.user_name,
-            'grbh': '',
-            'sex': sex,
-            'born': born,
-            'tel': this.data.tel
+            hospital: this.data.hospital,
+
+            id_card,
+            sex,
+            born,
+            request_day: this.data.request_day,
+            unit_code: this.data.unit_code,
+            doctor_code: this.data.doctor_code,
+            ampm: this.data.ampm,
+            charge_type: this.data.charge_type,
+            clinic_fee: this.data.clinic_fee,
+            response_type: '1',
+            pre_type: '6',
+            start_time: this.data.start_time,
+            end_time: this.data.end_time,
+            user_name: this.data.user_name,
+            grbh: '',
+            tel: this.data.tel
         }).then(result => {
             wx.hideLoading();
             if (result.code === '0') {

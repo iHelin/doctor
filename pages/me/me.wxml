@@ -33,7 +33,7 @@
                     </view>
                 </view>
             </view>
-            <view slot="weui-form__opr-area">
+            <view>
                 <button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
             </view>
 

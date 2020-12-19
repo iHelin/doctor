@@ -4,7 +4,7 @@ export default (url, data = {}, method = 'GET') => {
     return new Promise((resolve, reject) => {
         // 1. new Promise初始化promise实例的状态为pending
         wx.request({
-            url: 'https://www.hepplai.work' + url,
+            url: 'https://sdfyy.hepplai.work' + url,
             data,
             method,
             header: {

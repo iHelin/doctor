@@ -41,8 +41,20 @@
                             </view>
                             <view class="weui-cell__bd">
                                 <picker range="{{doctor_name_list}}" value="{{doctor_index}}" bindchange="handleDoctor"
-                                        style="margin-bottom:0;">
+                                        >
                                     {{doctor_name_list[doctor_index]}}
+                                </picker>
+                            </view>
+                        </view>
+
+                        <view class="weui-cell weui-cell_active">
+                            <view class="weui-cell__hd">
+                                <label class="weui-label">科室</label>
+                            </view>
+                            <view class="weui-cell__bd">
+                                <picker range="{{unit_name_list}}" value="{{unit_code_index}}"
+                                        bindchange="handleUnitCode">
+                                    {{unit_name_list[unit_code_index]}}
                                 </picker>
                             </view>
                         </view>

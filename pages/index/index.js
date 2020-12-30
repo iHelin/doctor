@@ -11,6 +11,10 @@ Page({
         doctor_code_list: ['00577', '02517'],
         doctor_index: 0,
         doctor_code: '',
+        unit_name_list: ['血液科门诊', '血液科移植门诊'],
+        unit_code_list: ['1010701', '1010723'],
+        unit_code_index: 0,
+        unit_code: ''
         // theme:'dark'
     },
 
@@ -22,8 +26,10 @@ Page({
         let id_card = wx.getStorageSync('id_card');
         let tel = wx.getStorageSync('tel');
         let doctor_code = this.data.doctor_code_list[this.data.doctor_index];
+        let unit_code = this.data.unit_code_list[this.data.unit_code_index];
         this.setData({
-            doctor_code
+            doctor_code,
+            unit_code
         });
         if (user_name) {
             this.setData({
@@ -77,6 +83,14 @@ Page({
             doctor_code
         });
     },
+    handleUnitCode(event) {
+        let unit_code_index = event.detail.value >>> 0;
+        let unit_code = this.data.unit_code_list[unit_code_index];
+        this.setData({
+            unit_code_index,
+            unit_code
+        });
+    },
 
     search() {
         if (!this.data.user_name) {
@@ -116,7 +130,7 @@ Page({
         }
 
         let hospital = '1';
-        let unit_code = '1010701';
+        let unit_code = this.data.unit_code;
         let doctor_code = this.data.doctor_code;
         wx.showLoading({
             title: '加载中',

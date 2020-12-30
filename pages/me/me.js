@@ -1,8 +1,11 @@
 var dateUtil = require('../../utils/util.js')
 var app = getApp()
+import request from '../../utils/request'
+
 
 Page({
     data: {
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
         accountID: Math.ceil(Math.random() * 100),
         nickName: '',
         msg: ''
@@ -11,6 +14,28 @@ Page({
         this.setData({
             nickName: wx.getStorageSync('nickName') || '随机用户'
         })
+    },
+
+    bindGetUserInfo() {
+        wx.getUserInfo({
+            success(result) {
+                let userInfo = result.userInfo
+                wx.login({
+                    success: (res) => {
+                        request('http://localhost:8080/users/login', {
+                            code: res.code,
+                            wxNickname: userInfo.nickName,
+                            avatarUrl: userInfo.avatarUrl
+                        }, 'POST').then((res) => {
+                            console.log(res, "登录成功");
+                        }).catch((err) => {
+                            console.log(err, "登录失败");
+                        })
+                    }
+                })
+            }
+        })
+
     },
     handleMsgChange(e) {
         this.setData({

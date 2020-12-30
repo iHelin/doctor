@@ -15,7 +15,7 @@ Page({
         end_time: '',
         request_day: '',
         charge_type: '3', //# 1为普通号，3为主任医师，4位副主任医师
-        unit_code: '1010701',
+        unit_code: '',
         hospital: '1'
     },
 
@@ -37,6 +37,7 @@ Page({
             start_time: options.start_time,
             end_time: options.end_time,
             request_day: options.request_day,
+            unit_code: options.unit_code,
             user_name,
             id_card,
             tel
@@ -54,7 +55,6 @@ Page({
         });
         request('/OrderRegApi/finishOrder', {
             hospital: this.data.hospital,
-
             id_card,
             sex,
             born,

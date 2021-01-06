@@ -23,7 +23,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log(options);
+        // console.log(options);
 
         let user_name = wx.getStorageSync('user_name');
         let id_card = wx.getStorageSync('id_card');

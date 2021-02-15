@@ -25,7 +25,8 @@
             </view>
             <view class="weui-cell">
                 <view class="weui-cell__bd">取号时间</view>
-                <view class="weui-cell__ft">{{startTime}} - {{endTime}}</view>
+                <wxs src="../../utils/fmt.wxs" module="fmt"/>
+                <view class="weui-cell__ft">{{fmt.format(startTime)}} - {{fmt.format(endTime)}}</view>
             </view>
             <view class="weui-cell">
                 <view class="weui-cell__bd">挂号费用</view>

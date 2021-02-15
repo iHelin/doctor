@@ -87,7 +87,8 @@
                       bindtap="navigateToFinishOrder"
                       class="weui-cell weui-cell_access"
                       hover-class="weui-cell_active">
-                    <view class="weui-cell__bd">{{item.startTime}} - {{item.endTime}}</view>
+                    <wxs src="../../utils/fmt.wxs" module="fmt"/>
+                    <view class="weui-cell__bd">{{fmt.format(item.startTime)}} - {{fmt.format(item.endTime)}}</view>
                     <view class="weui-cell__ft weui-cell__ft_in-access">{{item.leftNum}} / {{item.totalNum}}</view>
                 </view>
             </view>

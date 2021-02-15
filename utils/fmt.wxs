@@ -1,0 +1,8 @@
+var format = function (value) {
+    var m = value.split('').reverse().join('').slice(0, 2).split('').reverse().join('');
+    var h = value.split('').reverse().join('').slice(2, 4).split('').reverse().join('');
+    return h + ':' + m;
+};
+module.exports = {
+    format: format
+};

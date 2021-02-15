@@ -7,12 +7,12 @@ Page({
         tel: '13619020598',
         request_day: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
         list: null,
-        doctor_name_list: ['唐晓文', '王荧'],
-        doctor_code_list: ['00577', '02517'],
+        doctor_name_list: ['唐晓文', '王荧', '唐晓文'],
+        doctor_code_list: ['00577', '02517', '00577'],
         doctor_index: 0,
         doctor_code: '',
-        unit_name_list: ['血液科门诊', '血液科移植门诊'],
-        unit_code_list: ['1010701', '1010723'],
+        unit_name_list: ['血液科门诊', '血液科移植门诊', '血液科(特需门诊)'],
+        unit_code_list: ['1010701', '1010723', '1010707'],
         unit_code_index: 0,
         unit_code: ''
         // theme:'dark'

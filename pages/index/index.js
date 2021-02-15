@@ -5,14 +5,37 @@ Page({
         user_name: '赖信高',
         id_card: '510321196909141856',
         tel: '13619020598',
-        request_day: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
+        requestDay: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
         list: null,
-        doctor_name_list: ['唐晓文', '王荧', '唐晓文'],
-        doctor_code_list: ['00577', '02517', '00577'],
+        doctors: [{
+            name: '唐晓文',
+            code: '00577',
+            chargeType: '3'
+        }, {
+            name: '陈峰',
+            code: '02884',
+            chargeType: '3'
+        }, {
+            name: '戴海萍',
+            code: '02904',
+            chargeType: '4'
+        }, {
+            name: '王荧',
+            code: '02517',
+            chargeType: '3'
+        }],
         doctor_index: 0,
         doctor_code: '',
-        unit_name_list: ['血液科门诊', '血液科移植门诊', '血液科(特需门诊)'],
-        unit_code_list: ['1010701', '1010723', '1010707'],
+        units: [{
+            name: '血液科门诊',
+            code: '1010701'
+        }, {
+            name: '血液科(移植和免疫治疗门诊)',
+            code: '1010723'
+        }, {
+            name: '血液科(特需门诊)',
+            code: '1010707'
+        }],
         unit_code_index: 0,
         unit_code: ''
         // theme:'dark'
@@ -25,8 +48,8 @@ Page({
         let user_name = wx.getStorageSync('user_name');
         let id_card = wx.getStorageSync('id_card');
         let tel = wx.getStorageSync('tel');
-        let doctor_code = this.data.doctor_code_list[this.data.doctor_index];
-        let unit_code = this.data.unit_code_list[this.data.unit_code_index];
+        let doctor_code = this.data.doctors[this.data.doctor_index].code;
+        let unit_code = this.data.units[this.data.unit_code_index].code;
         this.setData({
             doctor_code,
             unit_code
@@ -70,14 +93,14 @@ Page({
         });
     },
     handleRequestDay(event) {
-        let request_day = event.detail.value
+        let requestDay = event.detail.value
         this.setData({
-            request_day
+            requestDay
         });
     },
     handleDoctor(event) {
         let doctor_index = event.detail.value >>> 0;
-        let doctor_code = this.data.doctor_code_list[doctor_index];
+        let doctor_code = this.data.doctors[doctor_index].code;
         this.setData({
             doctor_index,
             doctor_code
@@ -85,7 +108,7 @@ Page({
     },
     handleUnitCode(event) {
         let unit_code_index = event.detail.value >>> 0;
-        let unit_code = this.data.unit_code_list[unit_code_index];
+        let unit_code = this.data.units[unit_code_index].code;
         this.setData({
             unit_code_index,
             unit_code
@@ -120,8 +143,8 @@ Page({
         }
         wx.setStorageSync('tel', this.data.tel);
 
-        let request_day = this.data.request_day;
-        if (!request_day) {
+        let requestDay = this.data.requestDay;
+        if (!requestDay) {
             wx.showToast({
                 title: '请选择日期',
                 icon: 'error'
@@ -138,7 +161,7 @@ Page({
         });
         request('/WebCall/getAllDoctorDetail', {
             hospital,
-            request_day,
+            request_day: requestDay,
             unit_code,
             doctor_code
         }).then(result => {
@@ -168,8 +191,9 @@ Page({
 
     navigateToFinishOrder(event) {
         let item = event.currentTarget.dataset.item;
+        const chargeType = this.data.doctors[this.data.doctor_index].chargeType;
         if (item.leftNum > 0) {
-            let url = `/pages/confirm/confirm?request_day=${this.data.request_day}&unit_code=${this.data.unit_code}&clinic_fee=${item.clinic_fee}&doctor_code=${item.doctor_code}&start_time=${item.startTime}&end_time=${item.endTime}&ampm=${item.ampm}&doctor_name=${item.doctor_name}`;
+            let url = `/pages/confirm/confirm?requestDay=${this.data.requestDay}&unit_code=${this.data.unit_code}&clinic_fee=${item.clinic_fee}&doctor_code=${item.doctor_code}&start_time=${item.startTime}&end_time=${item.endTime}&ampm=${item.ampm}&doctor_name=${item.doctor_name}&chargeType=${chargeType}`;
             wx.navigateTo({
                 url
             })

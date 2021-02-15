@@ -40,9 +40,10 @@
                                 <label class="weui-label">医生</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <picker range="{{doctor_name_list}}" value="{{doctor_index}}" bindchange="handleDoctor"
-                                        >
-                                    {{doctor_name_list[doctor_index]}}
+                                <picker range="{{doctors}}" range-key="name" value="{{doctor_index}}"
+                                        bindchange="handleDoctor"
+                                >
+                                    {{doctors[doctor_index].name}}
                                 </picker>
                             </view>
                         </view>
@@ -52,9 +53,9 @@
                                 <label class="weui-label">科室</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <picker range="{{unit_name_list}}" value="{{unit_code_index}}"
+                                <picker range="{{units}}" range-key="name" value="{{unit_code_index}}"
                                         bindchange="handleUnitCode">
-                                    {{unit_name_list[unit_code_index]}}
+                                    {{units[unit_code_index].name}}
                                 </picker>
                             </view>
                         </view>
@@ -64,8 +65,8 @@
                                 <label class="weui-label">日期</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <picker mode="date" value="{{request_day}}" bindchange="handleRequestDay">
-                                    {{request_day}}
+                                <picker mode="date" value="{{requestDay}}" bindchange="handleRequestDay">
+                                    {{requestDay}}
                                 </picker>
                             </view>
                         </view>

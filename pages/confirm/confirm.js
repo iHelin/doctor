@@ -13,8 +13,8 @@ Page({
         doctor_name: '',
         start_time: '',
         end_time: '',
-        request_day: '',
-        charge_type: '3', //# 1为普通号，3为主任医师，4位副主任医师
+        requestDay: '',
+        chargeType: '', //# 1为普通号，3为主任医师，4位副主任医师
         unit_code: '',
         hospital: '1'
     },
@@ -23,7 +23,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        // console.log(options);
+        // console.log(options.chargeType);
 
         let user_name = wx.getStorageSync('user_name');
         let id_card = wx.getStorageSync('id_card');
@@ -36,8 +36,9 @@ Page({
             doctor_name: options.doctor_name,
             start_time: options.start_time,
             end_time: options.end_time,
-            request_day: options.request_day,
+            requestDay: options.requestDay,
             unit_code: options.unit_code,
+            chargeType: options.chargeType,
             user_name,
             id_card,
             tel
@@ -58,11 +59,11 @@ Page({
             id_card,
             sex,
             born,
-            request_day: this.data.request_day,
+            request_day: this.data.requestDay,
             unit_code: this.data.unit_code,
             doctor_code: this.data.doctor_code,
             ampm: this.data.ampm,
-            charge_type: this.data.charge_type,
+            charge_type: this.data.chargeType,
             clinic_fee: this.data.clinic_fee,
             response_type: '1',
             pre_type: '6',

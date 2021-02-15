@@ -2,8 +2,8 @@ import request from '../../utils/request'
 
 Page({
     data: {
-        user_name: '赖信高',
-        id_card: '510321196909141856',
+        username: '赖信高',
+        idCard: '510321196909141856',
         tel: '13619020598',
         requestDay: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
         list: null,
@@ -24,8 +24,7 @@ Page({
             code: '02517',
             chargeType: '3'
         }],
-        doctor_index: 0,
-        doctor_code: '',
+        doctorIndex: 0,
         units: [{
             name: '血液科门诊',
             code: '1010701'
@@ -36,8 +35,7 @@ Page({
             name: '血液科(特需门诊)',
             code: '1010707'
         }],
-        unit_code_index: 0,
-        unit_code: ''
+        unitIndex: 0,
         // theme:'dark'
     },
 
@@ -45,23 +43,17 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let user_name = wx.getStorageSync('user_name');
-        let id_card = wx.getStorageSync('id_card');
+        let username = wx.getStorageSync('username');
+        let idCard = wx.getStorageSync('idCard');
         let tel = wx.getStorageSync('tel');
-        let doctor_code = this.data.doctors[this.data.doctor_index].code;
-        let unit_code = this.data.units[this.data.unit_code_index].code;
-        this.setData({
-            doctor_code,
-            unit_code
-        });
-        if (user_name) {
+        if (username) {
             this.setData({
-                user_name
+                username
             })
         }
-        if (id_card) {
+        if (idCard) {
             this.setData({
-                id_card
+                idCard
             })
         }
         if (tel) {
@@ -72,17 +64,17 @@ Page({
     },
 
     handleUsername(event) {
-        let user_name = event.detail.value;
-        // wx.setStorageSync('user_name', user_name);
+        let username = event.detail.value;
+        // wx.setStorageSync('username', username);
         this.setData({
-            user_name
+            username
         });
     },
     handleIdCard(event) {
-        let id_card = event.detail.value;
-        // wx.setStorageSync('id_card', id_card);
+        let idCard = event.detail.value;
+        // wx.setStorageSync('idCard', idCard);
         this.setData({
-            id_card
+            idCard
         });
     },
     handleTel(event) {
@@ -99,40 +91,36 @@ Page({
         });
     },
     handleDoctor(event) {
-        let doctor_index = event.detail.value >>> 0;
-        let doctor_code = this.data.doctors[doctor_index].code;
+        let doctorIndex = event.detail.value >>> 0;
         this.setData({
-            doctor_index,
-            doctor_code
+            doctorIndex
         });
     },
     handleUnitCode(event) {
-        let unit_code_index = event.detail.value >>> 0;
-        let unit_code = this.data.units[unit_code_index].code;
+        let unitIndex = event.detail.value >>> 0;
         this.setData({
-            unit_code_index,
-            unit_code
+            unitIndex
         });
     },
 
     search() {
-        if (!this.data.user_name) {
+        if (!this.data.username) {
             wx.showToast({
                 title: '请输入姓名',
                 icon: 'error'
             })
             return;
         }
-        wx.setStorageSync('user_name', this.data.user_name);
+        wx.setStorageSync('username', this.data.username);
 
-        if (!this.data.id_card) {
+        if (!this.data.idCard) {
             wx.showToast({
                 title: '请输入身份证号',
                 icon: 'error'
             })
             return;
         }
-        wx.setStorageSync('id_card', this.data.id_card);
+        wx.setStorageSync('idCard', this.data.idCard);
 
         if (!this.data.tel) {
             wx.showToast({
@@ -153,8 +141,8 @@ Page({
         }
 
         let hospital = '1';
-        let unit_code = this.data.unit_code;
-        let doctor_code = this.data.doctor_code;
+        let unitCode = this.data.units[this.data.unitIndex].code;
+        let doctorCode = this.data.doctors[this.data.doctorIndex].code;
         wx.showLoading({
             title: '加载中',
             mask: true
@@ -162,8 +150,8 @@ Page({
         request('/WebCall/getAllDoctorDetail', {
             hospital,
             request_day: requestDay,
-            unit_code,
-            doctor_code
+            unit_code: unitCode,
+            doctor_code: doctorCode
         }).then(result => {
             wx.hideLoading();
             if (result) {
@@ -191,9 +179,10 @@ Page({
 
     navigateToFinishOrder(event) {
         let item = event.currentTarget.dataset.item;
-        const chargeType = this.data.doctors[this.data.doctor_index].chargeType;
+        const chargeType = this.data.doctors[this.data.doctorIndex].chargeType;
+        const unitCode = this.data.units[this.data.unitIndex].code;
         if (item.leftNum > 0) {
-            let url = `/pages/confirm/confirm?requestDay=${this.data.requestDay}&unit_code=${this.data.unit_code}&clinic_fee=${item.clinic_fee}&doctor_code=${item.doctor_code}&start_time=${item.startTime}&end_time=${item.endTime}&ampm=${item.ampm}&doctor_name=${item.doctor_name}&chargeType=${chargeType}`;
+            let url = `/pages/confirm/confirm?requestDay=${this.data.requestDay}&unitCode=${unitCode}&clinicFee=${item.clinic_fee}&doctorCode=${item.doctor_code}&startTime=${item.startTime}&endTime=${item.endTime}&ampm=${item.ampm}&doctorName=${item.doctor_name}&chargeType=${chargeType}`;
             wx.navigateTo({
                 url
             })

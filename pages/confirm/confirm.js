@@ -8,68 +8,67 @@ Page({
      */
     data: {
         ampm: 'a',
-        clinic_fee: '',
-        doctor_code: '',
-        doctor_name: '',
-        start_time: '',
-        end_time: '',
+        clinicFee: '',
+        doctorCode: '',
+        doctorName: '',
+        startTime: '',
+        endTime: '',
         requestDay: '',
         chargeType: '', //# 1为普通号，3为主任医师，4位副主任医师
-        unit_code: '',
-        hospital: '1'
+        unitCode: ''
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        // console.log(options.chargeType);
+        // console.log(options.doctorCode);
 
-        let user_name = wx.getStorageSync('user_name');
-        let id_card = wx.getStorageSync('id_card');
+        let username = wx.getStorageSync('username');
+        let idCard = wx.getStorageSync('idCard');
         let tel = wx.getStorageSync('tel');
 
         this.setData({
             ampm: options.ampm,
-            clinic_fee: options.clinic_fee,
-            doctor_code: options.doctor_code,
-            doctor_name: options.doctor_name,
-            start_time: options.start_time,
-            end_time: options.end_time,
+            clinicFee: options.clinicFee,
+            doctorCode: options.doctorCode,
+            doctorName: options.doctorName,
+            startTime: options.startTime,
+            endTime: options.endTime,
             requestDay: options.requestDay,
-            unit_code: options.unit_code,
+            unitCode: options.unitCode,
             chargeType: options.chargeType,
-            user_name,
-            id_card,
+            username,
+            idCard,
             tel
         })
     },
 
     finishOrder() {
-        let id_card = this.data.id_card;
-        let sex = id_card[id_card.length - 2] >>> 0 % 2 === 0 ? '0' : '1';
-        let born = id_card.slice(6, 10) + '-' + id_card.slice(10, 12) + '-' + this.data.id_card.slice(12, 14);
+        let idCard = this.data.idCard;
+        let sex = idCard[idCard.length - 2] >>> 0 % 2 === 0 ? '0' : '1';
+        let born = idCard.slice(6, 10) + '-' + idCard.slice(10, 12) + '-' + this.data.idCard.slice(12, 14);
 
         wx.showLoading({
             title: '加载中',
             mask: true
         });
         request('/OrderRegApi/finishOrder', {
-            hospital: this.data.hospital,
-            id_card,
             sex,
             born,
+            id_card: idCard,
+            hospital: '1',
             request_day: this.data.requestDay,
-            unit_code: this.data.unit_code,
-            doctor_code: this.data.doctor_code,
+            unit_code: this.data.unitCode,
+            doctor_code: this.data.doctorCode,
             ampm: this.data.ampm,
             charge_type: this.data.chargeType,
-            clinic_fee: this.data.clinic_fee,
+            clinic_fee: this.data.clinicFee,
             response_type: '1',
             pre_type: '6',
-            start_time: this.data.start_time,
-            end_time: this.data.end_time,
-            user_name: this.data.user_name,
+            start_time: this.data.startTime,
+            end_time: this.data.endTime,
+            user_name: this.data.username,
             grbh: '',
             tel: this.data.tel
         }).then(result => {

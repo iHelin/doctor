@@ -11,7 +11,7 @@
                                 <label class="weui-label">姓名</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <input class="weui-input" value="{{user_name}}" bindinput="handleUsername"
+                                <input class="weui-input" value="{{username}}" bindinput="handleUsername"
                                        placeholder="填写姓名"/>
                             </view>
                         </view>
@@ -20,7 +20,7 @@
                                 <label class="weui-label">身份证号</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <input value="{{id_card}}" bindinput="handleIdCard" class="weui-input"
+                                <input value="{{idCard}}" bindinput="handleIdCard" class="weui-input"
                                        placeholder="填写身份证号"/>
                             </view>
                         </view>
@@ -40,10 +40,10 @@
                                 <label class="weui-label">医生</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <picker range="{{doctors}}" range-key="name" value="{{doctor_index}}"
+                                <picker range="{{doctors}}" range-key="name" value="{{doctorIndex}}"
                                         bindchange="handleDoctor"
                                 >
-                                    {{doctors[doctor_index].name}}
+                                    {{doctors[doctorIndex].name}}
                                 </picker>
                             </view>
                         </view>
@@ -53,9 +53,9 @@
                                 <label class="weui-label">科室</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <picker range="{{units}}" range-key="name" value="{{unit_code_index}}"
+                                <picker range="{{units}}" range-key="name" value="{{unitIndex}}"
                                         bindchange="handleUnitCode">
-                                    {{units[unit_code_index].name}}
+                                    {{units[unitIndex].name}}
                                 </picker>
                             </view>
                         </view>

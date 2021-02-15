@@ -9,38 +9,38 @@
         <view class="weui-cells weui-cells_after-title">
             <!-- <view class="weui-cell">
               <view class="weui-cell__bd">就诊医院</view>
-              <view class="weui-cell__ft">{{doctor_name}}</view>
+              <view class="weui-cell__ft">{{doctorName}}</view>
             </view> -->
             <view class="weui-cell">
                 <view class="weui-cell__bd">医生姓名</view>
-                <view class="weui-cell__ft">{{doctor_name}}</view>
+                <view class="weui-cell__ft">{{doctorName}}</view>
             </view>
-            <!-- <view class="weui-cell">
-              <view class="weui-cell__bd">挂号科室</view>
-              <view class="weui-cell__ft">{{doctor_name}}</view>
-            </view> -->
+            <view class="weui-cell">
+                <view class="weui-cell__bd">挂号科室</view>
+                <view class="weui-cell__ft">{{unitCode}}</view>
+            </view>
             <view class="weui-cell">
                 <view class="weui-cell__bd">挂号日期</view>
                 <view class="weui-cell__ft">{{requestDay}}</view>
             </view>
             <view class="weui-cell">
                 <view class="weui-cell__bd">取号时间</view>
-                <view class="weui-cell__ft">{{start_time}} - {{end_time}}</view>
+                <view class="weui-cell__ft">{{startTime}} - {{endTime}}</view>
             </view>
             <view class="weui-cell">
                 <view class="weui-cell__bd">挂号费用</view>
-                <view class="weui-cell__ft">{{clinic_fee}}</view>
+                <view class="weui-cell__ft">¥ {{clinicFee}}</view>
             </view>
         </view>
         <view class="weui-cells__title">就诊信息</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
                 <view class="weui-cell__bd">姓名</view>
-                <view class="weui-cell__ft">{{user_name}}</view>
+                <view class="weui-cell__ft">{{username}}</view>
             </view>
             <view class="weui-cell">
                 <view class="weui-cell__bd">身份证号</view>
-                <view class="weui-cell__ft">{{id_card}}</view>
+                <view class="weui-cell__ft">{{idCard}}</view>
             </view>
         </view>
 

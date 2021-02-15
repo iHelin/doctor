@@ -20,6 +20,10 @@ Page({
             code: '02904',
             chargeType: '4'
         }, {
+            name: '普通号',
+            code: '',
+            chargeType: '1'
+        }, {
             name: '王荧',
             code: '02517',
             chargeType: '3'

@@ -3,6 +3,7 @@
         <view class="weui-form">
             <!--      <view class="weui-form__control-area">-->
             <view class="">
+                <view style="margin:0 20rpx;text-align:center;">{{hitokoto}}</view>
                 <view class="weui-cells__group weui-cells__group_form">
                     <view class="weui-cells__title">挂号</view>
                     <view class="weui-cells weui-cells_form">

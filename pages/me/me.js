@@ -15,6 +15,11 @@ Page({
             nickName: wx.getStorageSync('nickName') || '随机用户'
         })
     },
+    navigateToOrder() {
+        wx.navigateTo({
+            url: '/pages/order/order'
+        })
+    },
 
     bindGetUserInfo() {
         wx.getUserInfo({

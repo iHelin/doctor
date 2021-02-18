@@ -4,13 +4,13 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": false,
-    "es6": true,
-    "enhance": true,
-    "postcss": true,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": true,
+      "urlCheck": false,
+      "es6": true,
+      "enhance": true,
+      "postcss": true,
+      "preloadBackgroundData": false,
+      "minified": true,
+      "newFeature": true,
       "coverView": true,
       "nodeModules": true,
       "autoAudits": false,
@@ -39,18 +39,18 @@
       "minifyWXSS": true,
       "useApiHostProcess": true
   },
-  "compileType": "miniprogram",
-  "libVersion": "2.13.1",
-  "appid": "wx2e2c22695f0fdf64",
-  "projectname": "seven",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "isGameTourist": false,
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
-  "condition": {
+    "compileType": "miniprogram",
+    "libVersion": "2.15.0",
+    "appid": "wx2e2c22695f0fdf64",
+    "projectname": "seven",
+    "debugOptions": {
+        "hidedInDevtools": []
+    },
+    "isGameTourist": false,
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+    "condition": {
     "search": {
       "list": []
     },

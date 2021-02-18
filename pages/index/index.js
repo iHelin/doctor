@@ -208,8 +208,11 @@ Page({
 
     navigateToFinishOrder(event) {
         let item = event.currentTarget.dataset.item;
-        const chargeType = this.data.doctors[this.data.doctorIndex].chargeType;
+        let chargeType = this.data.doctors[this.data.doctorIndex].chargeType;
         const unitCode = this.data.units[this.data.unitIndex].code;
+        if (unitCode === '1010707') {
+            chargeType = '12';
+        }
         if (item.leftNum > 0) {
             let url = `/pages/confirm/confirm?requestDay=${this.data.requestDay}&unitCode=${unitCode}&clinicFee=${item.clinic_fee}&doctorCode=${item.doctor_code}&startTime=${item.startTime}&endTime=${item.endTime}&ampm=${item.ampm}&doctorName=${item.doctor_name}&chargeType=${chargeType}`;
             wx.navigateTo({

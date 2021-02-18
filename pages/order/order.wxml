@@ -1,0 +1,12 @@
+<view class="page form_page js_show" data-weui-theme="{{theme}}">
+    <view class="weui-cells weui-cells_after-title">
+        <view wx:for="{{orders}}"
+              wx:key="pre_reqid"
+              data-item="{{item}}"
+              class="weui-cell"
+              hover-class="weui-cell_active">
+            <view class="weui-cell__bd">{{item.unit_name}}</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">{{item.exec_flag}}</view>
+        </view>
+    </view>
+</view>

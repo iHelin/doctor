@@ -2,7 +2,8 @@
     "pages": [
         "pages/index/index",
         "pages/confirm/confirm",
-        "pages/me/me"
+        "pages/me/me",
+        "pages/order/order"
     ],
     "window": {
         "backgroundTextStyle": "light",

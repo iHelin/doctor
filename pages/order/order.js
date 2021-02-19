@@ -6,7 +6,11 @@ Page({
         orders: []
     },
 
-    onLoad: function (options) {
+    onLoad(options) {
+        this.getData();
+    },
+
+    getData() {
         let idCard = wx.getStorageSync('idCard');
         wx.showLoading({
             title: '加载中',
@@ -76,6 +80,7 @@ Page({
                             });
                         } else if (result.code === '1') {
                             //成功
+                            this.getData();
                             wx.showToast({
                                 title: result.msg
                             });

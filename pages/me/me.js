@@ -5,14 +5,19 @@ import request from '../../utils/request'
 
 Page({
     data: {
+        username: '',
+        idCard: '',
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         accountID: Math.ceil(Math.random() * 100),
         nickName: '',
         msg: ''
     },
     onShow: function () {
+        let username = wx.getStorageSync('username');
+        let idCard = wx.getStorageSync('idCard');
         this.setData({
-            nickName: wx.getStorageSync('nickName') || '随机用户'
+            username,
+            idCard
         })
     },
 
@@ -70,7 +75,7 @@ Page({
         }
     },
 
-    onLoad: function () {
+    onLoad() {
 
     },
 

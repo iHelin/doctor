@@ -1,7 +1,7 @@
 <view class="page">
     <view class="page__hd">
-        <view class="page__title">我</view>
-        <view class="page__desc">Me</view>
+        <view class="page__title">{{username}}</view>
+        <view class="page__desc">{{idCard}}</view>
     </view>
     <view class="page__bd">
         <mp-cells ext-class="my-cells" title="">

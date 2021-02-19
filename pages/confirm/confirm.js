@@ -86,7 +86,7 @@ Page({
             } else {
                 wx.showToast({
                     title: '未知错误',
-                    icon: 'none'
+                    icon: 'error'
                 });
             }
         }).catch(e => {

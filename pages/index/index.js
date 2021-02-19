@@ -2,7 +2,6 @@ import request from '../../utils/request'
 
 Page({
     data: {
-        hitokoto: '',
         username: '赖信高',
         idCard: '510321196909141856',
         tel: '13619020598',
@@ -66,30 +65,6 @@ Page({
                 tel
             })
         }
-        this.handleSentense();
-    },
-    handleSentense() {
-        request('/hitokoto', {}).then(result => {
-            if (result) {
-                this.setData({
-                    hitokoto: result
-                });
-            } else {
-                wx.showToast({
-                    title: '无排班信息',
-                    icon: 'error'
-                });
-                this.setData({
-                    hitokoto: ''
-                });
-            }
-        }).catch(e => {
-            console.error(e);
-            wx.showToast({
-                title: e.errMsg,
-                icon: 'error'
-            })
-        });
     },
 
     handleUsername(event) {

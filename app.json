@@ -1,9 +1,10 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/confirm/confirm",
+        "pages/order/order",
         "pages/me/me",
-        "pages/order/order"
+        "pages/test/test",
+        "pages/confirm/confirm"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -30,8 +31,11 @@
         ]
     },
     "networkTimeout": {
-        "request": 10000
+        "request": 5000
     },
     "debug": false,
-    "sitemapLocation": "sitemap.json"
+    "sitemapLocation": "sitemap.json",
+    "useExtendedLib": {
+        "weui": true
+    }
 }

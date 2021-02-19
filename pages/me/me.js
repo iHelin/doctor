@@ -1,5 +1,5 @@
-var dateUtil = require('../../utils/util.js')
-var app = getApp()
+let dateUtil = require('../../utils/util.js')
+let app = getApp()
 import request from '../../utils/request'
 
 
@@ -13,11 +13,6 @@ Page({
     onShow: function () {
         this.setData({
             nickName: wx.getStorageSync('nickName') || '随机用户'
-        })
-    },
-    navigateToOrder() {
-        wx.navigateTo({
-            url: '/pages/order/order'
         })
     },
 

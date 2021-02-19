@@ -1,12 +1,37 @@
-<view class="page form_page js_show" data-weui-theme="{{theme}}">
-    <view class="weui-cells weui-cells_after-title">
-        <view wx:for="{{orders}}"
-              wx:key="pre_reqid"
-              data-item="{{item}}"
-              class="weui-cell"
-              hover-class="weui-cell_active">
-            <view class="weui-cell__bd">{{item.unit_name}}</view>
-            <view class="weui-cell__ft weui-cell__ft_in-access">{{item.exec_flag}}</view>
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-panel" wx:for="{{orders}}"
+              wx:key="pre_reqid">
+            <view class="weui-panel__hd">{{item.unit_name}} {{item.doctor_name}}</view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">
+                        {{fn.getOrderStatus(item.exec_flag)}}
+                    </view>
+                    <wxs module="fn" src="../../utils/fmt.wxs"/>
+                    <view class="weui-media-box__desc">
+                        验证码：{{item.check_no}}
+                    </view>
+                    <view class="weui-media-box__info">
+                        <view class="weui-media-box__info__meta">{{item.request_day}}</view>
+                        <view class="weui-media-box__info__meta">{{fn.format(item.starttime)}}
+                            - {{fn.format(item.endtime)}}
+                        </view>
+                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+                            序号：{{item.req_order}}
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="weui-form-preview__ft" wx:if="{{item.exec_flag==='0'}}">
+                <button bindtap="handleDismiss"
+                        data-item="{{item}}"
+                        style="margin-top:0;margin-bottom:0;"
+                        class="weui-form-preview__btn weui-form-preview__btn_primary"
+                        hover-class="weui-form-preview__btn_active">
+                    取消预约
+                </button>
+            </view>
         </view>
     </view>
 </view>

@@ -1,13 +1,13 @@
-<view class="page form_page js_show" data-weui-theme="{{theme}}">
-    <view>
-        <view class="weui-cells weui-cells_after-title">
-            <view bindtap="navigateToOrder"
-                  class="weui-cell weui-cell_access"
-                  hover-class="weui-cell_active">
-                <view class="weui-cell__bd">我的挂号</view>
-                <!--                <view class="weui-cell__ft weui-cell__ft_in-access">aaa</view>-->
-            </view>
-        </view>
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">我</view>
+        <view class="page__desc">Me</view>
+    </view>
+    <view class="page__bd">
+        <mp-cells ext-class="my-cells" title="">
+            <mp-cell link url="/pages/order/order" value="我的挂号"></mp-cell>
+            <mp-cell link url="/pages/report/report" value="我的报告"></mp-cell>
+        </mp-cells>
         <!--        <view id="form" class="weui-form">-->
         <!--            -->
         <!--            <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>-->

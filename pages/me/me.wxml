@@ -1,18 +1,32 @@
 <view class="page">
-    <view class="page__hd">
-        <view class="page__title">{{username}}</view>
-        <view class="page__desc">{{idCard}}</view>
-    </view>
+    <!--    <view class="page__hd">-->
+    <!--    </view>-->
     <view class="page__bd">
-        <mp-cells ext-class="my-cells" title="">
-            <mp-cell link url="/pages/order/order" value="我的挂号"></mp-cell>
-            <mp-cell link url="/pages/report/report" value="我的报告"></mp-cell>
-        </mp-cells>
-        <!--        <view id="form" class="weui-form">-->
-        <!--            -->
-        <!--            <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>-->
-
-        <!--        </view>-->
-
+        <view wx:if="{{!hasLogin}}" style="text-align:center;margin-top:25rpx">
+            <view>
+                <image class="userinfo-avatar" src="../../images/no-login.png"></image>
+            </view>
+            <view>
+                <button class="mini-btn" type="primary" size="mini" open-type="getUserInfo"
+                        bindgetuserinfo="bindGetUserInfo">授权登录
+                </button>
+            </view>
+        </view>
+        <block wx:else>
+            <view style="text-align:center;">
+                <view>
+                    <image class="userinfo-avatar" src="{{avatarUrl}}"></image>
+                </view>
+                <view>
+                    <text class="userinfo-nickname">{{nickname}}</text>
+                </view>
+            </view>
+            <view class="page__title">{{username}}</view>
+            <view class="page__desc">{{idCard}}</view>
+            <mp-cells ext-class="my-cells" title="">
+                <mp-cell link url="/pages/order/order" value="我的挂号"></mp-cell>
+                <mp-cell link url="/pages/report/report" value="我的报告"></mp-cell>
+            </mp-cells>
+        </block>
     </view>
 </view>

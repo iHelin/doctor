@@ -5,12 +5,12 @@ import request from '../../utils/request'
 
 Page({
     data: {
+        id: '',
         username: '',
+        nickname: '',
         idCard: '',
-        canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        accountID: Math.ceil(Math.random() * 100),
-        nickName: '',
-        msg: ''
+        avatarUrl: '',
+        hasLogin: false
     },
     onShow: function () {
         let username = wx.getStorageSync('username');
@@ -23,16 +23,24 @@ Page({
 
     bindGetUserInfo() {
         wx.getUserInfo({
-            success(result) {
-                let userInfo = result.userInfo
+            success: (result) => {
+                let userInfo = result.userInfo;
                 wx.login({
                     success: (res) => {
-                        request('http://localhost:8080/users/login', {
+                        request('http://localhost:8888/wechat/login', {
                             code: res.code,
-                            wxNickname: userInfo.nickName,
+                            nickname: userInfo.nickName,
                             avatarUrl: userInfo.avatarUrl
-                        }, 'POST').then((res) => {
-                            console.log(res, "登录成功");
+                        }, 'POST').then((result) => {
+                            if (result.code === 0) {
+                                this.setData({
+                                    hasLogin: true,
+                                    id: result.data.user.id,
+                                    nickname: userInfo.nickName,
+                                    avatarUrl: userInfo.avatarUrl
+                                });
+                                wx.setStorageSync('token', result.data.token);
+                            }
                         }).catch((err) => {
                             console.log(err, "登录失败");
                         })
@@ -40,43 +48,28 @@ Page({
                 })
             }
         })
-
-    },
-    handleMsgChange(e) {
-        this.setData({
-            msg: e.detail.detail.value
-        })
-    },
-    handleClick() {
-        if (this.data.msg && this.data.nickName) {
-            let headImgUrl = '';
-            if (wx.getStorageSync('avatarUrl')) {
-                headImgUrl = wx.getStorageSync('avatarUrl');
-            } else {
-                headImgUrl = 'http://iph.href.lu/100x100';
-            }
-            wx.request({
-                url: app.globalData.request + '/msg/submit',
-                method: 'post',
-                data: {
-                    nickName: this.data.nickName,
-                    accountID: this.data.accountID,
-                    headImgUrl: headImgUrl,
-                    msg: this.data.msg
-                },
-                success: res => {
-                    wx.showToast({
-                        title: '提交成功',
-                    })
-                }
-            })
-        } else {
-
-        }
     },
 
     onLoad() {
-
+        let hasLogin = !!wx.getStorageSync('token');
+        this.setData({
+            hasLogin
+        })
+        if (hasLogin) {
+            request('http://localhost:8888/wechat/me', {}, 'get').then((result) => {
+                if (result.code === 0) {
+                    this.setData({
+                        id: result.data.id,
+                        nickname: result.data.nickname,
+                        avatarUrl: result.data.avatarUrl
+                    });
+                }
+            }).catch((err) => {
+                console.log(err, "获取信息失败");
+            })
+        } else {
+            console.log('未登录');
+        }
     },
 
     goto: function (id) {

@@ -7,10 +7,10 @@ Page({
     },
 
     onLoad(options) {
-        this.getData();
+        this.getDataList();
     },
 
-    getData() {
+    getDataList() {
         let idCard = wx.getStorageSync('idCard');
         wx.showLoading({
             title: '加载中',
@@ -80,10 +80,10 @@ Page({
                             });
                         } else if (result.code === '1') {
                             //成功
-                            this.getData();
                             wx.showToast({
                                 title: result.msg
                             });
+                            this.getDataList();
                         } else {
                             wx.showToast({
                                 title: '未知错误',
@@ -98,12 +98,9 @@ Page({
                             icon: 'none'
                         })
                     });
-                } else if (res.cancel) {
-                    console.log('用户点击取消')
                 }
             }
         })
-
     },
 
     onReady: function () {

@@ -19,38 +19,19 @@ Page({
                     title: '绑定成功！',
                     icon: 'success'
                 })
-                wx.navigateBack()
+                wx.navigateBack();
             } else {
                 wx.showToast({
                     title: result.msg,
                     icon: 'error'
-                })
+                });
             }
         }).catch((err) => {
             wx.showToast({
                 title: '绑定失败',
                 icon: 'error'
-            })
+            });
         })
-    },
-
-    handleUsername(event) {
-        let username = event.detail.value;
-        this.setData({
-            username
-        });
-    },
-    handleIdCard(event) {
-        let idCard = event.detail.value;
-        this.setData({
-            idCard
-        });
-    },
-    handleTel(event) {
-        let telephone = event.detail.value;
-        this.setData({
-            telephone
-        });
     },
 
     onLoad(options) {

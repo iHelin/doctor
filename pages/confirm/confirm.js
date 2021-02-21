@@ -53,6 +53,14 @@ Page({
             title: '加载中',
             mask: true
         });
+        let chargeType = this.data.chargeType;
+        if (this.data.unitCode === '1010707') {
+            if (this.data.clinicFee === '200') {
+                chargeType = '13';
+            } else if (this.data.clinicFee === '300') {
+                chargeType = '12';
+            }
+        }
         request('/OrderRegApi/finishOrder', {
             sex,
             born,
@@ -62,7 +70,7 @@ Page({
             unit_code: this.data.unitCode,
             doctor_code: this.data.doctorCode,
             ampm: this.data.ampm,
-            charge_type: this.data.chargeType,
+            charge_type: chargeType,
             clinic_fee: this.data.clinicFee,
             response_type: '1',
             pre_type: '6',

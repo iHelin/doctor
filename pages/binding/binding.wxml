@@ -10,7 +10,8 @@
                                 <label class="weui-label">姓名</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <input class="weui-input" value="{{username}}" bindinput="handleUsername"
+                                <input class="weui-input"
+                                       model:value="{{username}}"
                                        placeholder="姓名"/>
                             </view>
                         </view>
@@ -19,7 +20,8 @@
                                 <label class="weui-label">身份证号</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <input value="{{idCard}}" bindinput="handleIdCard" class="weui-input"
+                                <input model:value="{{idCard}}"
+                                       class="weui-input"
                                        placeholder="身份证号"/>
                             </view>
                         </view>
@@ -28,8 +30,7 @@
                                 <label class="weui-label">联系电话</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <input value="{{telephone}}"
-                                       bindinput="handleTel"
+                                <input model:value="{{telephone}}"
                                        class="weui-input"
                                        placeholder="联系电话"
                                        type="number"

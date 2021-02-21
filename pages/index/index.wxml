@@ -12,7 +12,8 @@
                                 <label class="weui-label">姓名</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <input class="weui-input" value="{{username}}" bindinput="handleUsername"
+                                <input class="weui-input"
+                                       model:value="{{username}}"
                                        placeholder="填写姓名"/>
                             </view>
                         </view>
@@ -21,7 +22,8 @@
                                 <label class="weui-label">身份证号</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <input value="{{idCard}}" bindinput="handleIdCard" class="weui-input"
+                                <input model:value="{{idCard}}"
+                                       class="weui-input"
                                        placeholder="填写身份证号"/>
                             </view>
                         </view>
@@ -30,7 +32,9 @@
                                 <label class="weui-label">联系电话</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <input value="{{tel}}" bindinput="handleTel" class="weui-input" placeholder="填写联系电话"
+                                <input model:value="{{tel}}"
+                                       class="weui-input"
+                                       placeholder="填写联系电话"
                                        type="number"
                                        pattern="[0-9]*"/>
                             </view>
@@ -41,9 +45,9 @@
                                 <label class="weui-label">医生</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <picker range="{{doctors}}" range-key="name" value="{{doctorIndex}}"
-                                        bindchange="handleDoctor"
-                                >
+                                <picker range="{{doctors}}"
+                                        range-key="name"
+                                        model:value="{{doctorIndex}}">
                                     {{doctors[doctorIndex].name}}
                                 </picker>
                             </view>
@@ -54,8 +58,9 @@
                                 <label class="weui-label">科室</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <picker range="{{units}}" range-key="name" value="{{unitIndex}}"
-                                        bindchange="handleUnitCode">
+                                <picker range="{{units}}"
+                                        range-key="name"
+                                        model:value="{{unitIndex}}">
                                     {{units[unitIndex].name}}
                                 </picker>
                             </view>
@@ -66,7 +71,8 @@
                                 <label class="weui-label">日期</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <picker mode="date" value="{{requestDay}}" bindchange="handleRequestDay">
+                                <picker mode="date"
+                                        model:value="{{requestDay}}">
                                     {{requestDay}}
                                 </picker>
                             </view>

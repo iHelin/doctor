@@ -27,6 +27,10 @@ Page({
             code: '',
             chargeType: '1'
         }, {
+            name: '孙爱宁',
+            code: '00036',
+            chargeType: '3'
+        }, {
             name: '王荧',
             code: '02517',
             chargeType: '3'
@@ -51,43 +55,6 @@ Page({
      */
     onLoad: function (options) {
 
-    },
-
-    handleUsername(event) {
-        let username = event.detail.value;
-        this.setData({
-            username
-        });
-    },
-    handleIdCard(event) {
-        let idCard = event.detail.value;
-        this.setData({
-            idCard
-        });
-    },
-    handleTel(event) {
-        let tel = event.detail.value;
-        this.setData({
-            tel
-        });
-    },
-    handleRequestDay(event) {
-        let requestDay = event.detail.value
-        this.setData({
-            requestDay
-        });
-    },
-    handleDoctor(event) {
-        let doctorIndex = event.detail.value >>> 0;
-        this.setData({
-            doctorIndex
-        });
-    },
-    handleUnitCode(event) {
-        let unitIndex = event.detail.value >>> 0;
-        this.setData({
-            unitIndex
-        });
     },
 
     search() {
@@ -168,14 +135,11 @@ Page({
         let item = event.currentTarget.dataset.item;
         let chargeType = this.data.doctors[this.data.doctorIndex].chargeType;
         const unitCode = this.data.units[this.data.unitIndex].code;
-        if (unitCode === '1010707') {
-            chargeType = '12';
-        }
         if (item.leftNum > 0) {
             let url = `/pages/confirm/confirm?requestDay=${this.data.requestDay}&unitCode=${unitCode}&clinicFee=${item.clinic_fee}&doctorCode=${item.doctor_code}&startTime=${item.startTime}&endTime=${item.endTime}&ampm=${item.ampm}&doctorName=${item.doctor_name}&chargeType=${chargeType}`;
             wx.navigateTo({
                 url
-            })
+            });
         }
     },
 

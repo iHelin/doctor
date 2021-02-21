@@ -2,8 +2,10 @@
 export default (url, data = {}, method = 'GET') => {
     return new Promise((resolve, reject) => {
         // 1. new Promise初始化promise实例的状态为pending
+        // let proxy = 'http://localhost:8888';
+        let proxy = 'https://sdfyy.hepplai.work/proxy';
         wx.request({
-            url: url.startsWith('http') ? url : 'https://sdfyy.hepplai.work' + url,
+            url: url.startsWith('proxy') ? proxy + url.replace('proxy', '') : 'https://sdfyy.hepplai.work' + url,
             data,
             method,
             header: {

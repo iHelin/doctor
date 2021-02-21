@@ -21,11 +21,12 @@
                     <text class="userinfo-nickname">{{nickname}}</text>
                 </view>
             </view>
-            <view class="page__title">{{username}}</view>
-            <view class="page__desc">{{idCard}}</view>
+            <!--            <view class="page__title">{{username}}</view>-->
+            <!--            <view class="page__desc">{{idCard}}</view>-->
             <mp-cells ext-class="my-cells" title="">
                 <mp-cell link url="/pages/order/order" value="我的挂号"></mp-cell>
                 <mp-cell link url="/pages/report/report" value="我的报告"></mp-cell>
+                <mp-cell link url="/pages/binding/binding" value="我的绑定"></mp-cell>
             </mp-cells>
         </block>
     </view>

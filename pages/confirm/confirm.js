@@ -26,7 +26,7 @@ Page({
 
         let username = wx.getStorageSync('username');
         let idCard = wx.getStorageSync('idCard');
-        let tel = wx.getStorageSync('tel');
+        let tel = wx.getStorageSync('telephone');
 
         this.setData({
             ampm: options.ampm,

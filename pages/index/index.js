@@ -2,9 +2,12 @@ import request from '../../utils/request'
 
 Page({
     data: {
-        username: '赖信高',
-        idCard: '510321196909141856',
-        tel: '13619020598',
+        // username: '赖信高',
+        // idCard: '510321196909141856',
+        // tel: '13619020598',
+        username: '',
+        idCard: '',
+        tel: '',
         requestDay: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
         list: null,
         doctors: [{
@@ -47,43 +50,23 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let username = wx.getStorageSync('username');
-        let idCard = wx.getStorageSync('idCard');
-        let tel = wx.getStorageSync('tel');
-        if (username) {
-            this.setData({
-                username
-            })
-        }
-        if (idCard) {
-            this.setData({
-                idCard
-            })
-        }
-        if (tel) {
-            this.setData({
-                tel
-            })
-        }
+
     },
 
     handleUsername(event) {
         let username = event.detail.value;
-        // wx.setStorageSync('username', username);
         this.setData({
             username
         });
     },
     handleIdCard(event) {
         let idCard = event.detail.value;
-        // wx.setStorageSync('idCard', idCard);
         this.setData({
             idCard
         });
     },
     handleTel(event) {
         let tel = event.detail.value;
-        // wx.setStorageSync('tel', tel);
         this.setData({
             tel
         });
@@ -133,7 +116,7 @@ Page({
             })
             return;
         }
-        wx.setStorageSync('tel', this.data.tel);
+        wx.setStorageSync('telephone', this.data.tel);
 
         let requestDay = this.data.requestDay;
         if (!requestDay) {
@@ -207,7 +190,14 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        let username = wx.getStorageSync('username');
+        let idCard = wx.getStorageSync('idCard');
+        let tel = wx.getStorageSync('telephone');
+        this.setData({
+            username,
+            idCard,
+            tel
+        });
     },
 
     /**

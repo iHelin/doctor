@@ -1,7 +1,8 @@
 {
     "pages": [
-        "pages/me/me",
         "pages/index/index",
+        "pages/binding/binding",
+        "pages/me/me",
         "pages/report/report",
         "pages/order/order",
         "pages/test/test",

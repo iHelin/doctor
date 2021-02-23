@@ -1,4 +1,3 @@
-let dateUtil = require('../../utils/util.js')
 let app = getApp()
 import request from '../../utils/request'
 
@@ -12,7 +11,8 @@ Page({
         avatarUrl: '',
         hasLogin: false
     },
-    onShow: function () {
+
+    onShow() {
         let updateInfo = wx.getStorageSync('refresh');
         if (updateInfo) {
             this.getUserInfo();
@@ -27,7 +27,7 @@ Page({
         })
     },
 
-    bindGetUserInfo() {
+    login() {
         wx.getUserInfo({
             success: (result) => {
                 let userInfo = result.userInfo;
@@ -63,6 +63,10 @@ Page({
         })
     },
 
+    bindGetUserInfo() {
+        this.login();
+    },
+
     onLoad(options) {
         let hasLogin = !!wx.getStorageSync('token');
         this.setData({
@@ -81,6 +85,9 @@ Page({
                     avatarUrl: result.data.avatarUrl
                 });
                 this.checkBinding(result.data);
+            } else if (result.code === 100) {
+                wx.removeStorageSync('token');
+                this.login();
             }
         }).catch((err) => {
             console.log(err, "获取信息失败");

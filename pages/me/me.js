@@ -77,7 +77,7 @@ Page({
         }
     },
     async getUserInfo() {
-        await request('proxy/wechat/me', {}, 'get').then((result) => {
+        await request('proxy/me', {}, 'get').then((result) => {
             if (result.code === 0) {
                 this.setData({
                     id: result.data.id,

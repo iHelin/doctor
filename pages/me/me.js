@@ -85,7 +85,7 @@ Page({
                     avatarUrl: result.data.avatarUrl
                 });
                 this.checkBinding(result.data);
-            } else if (result.code === 100) {
+            } else {
                 wx.removeStorageSync('token');
                 this.login();
             }

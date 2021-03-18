@@ -44,15 +44,11 @@ Page({
         })
     },
 
-    finishOrder() {
+    async finishOrder() {
         let idCard = this.data.idCard;
         let sex = idCard[idCard.length - 2] >>> 0 % 2 === 0 ? '0' : '1';
         let born = idCard.slice(6, 10) + '-' + idCard.slice(10, 12) + '-' + this.data.idCard.slice(12, 14);
 
-        wx.showLoading({
-            title: '加载中',
-            mask: true
-        });
         let chargeType = this.data.chargeType;
         if (this.data.unitCode === '1010707') {
             if (this.data.clinicFee === '200') {
@@ -61,7 +57,7 @@ Page({
                 chargeType = '12';
             }
         }
-        request('/OrderRegApi/finishOrder', {
+        const result = await request('/OrderRegApi/finishOrder', {
             sex,
             born,
             id_card: idCard,
@@ -79,32 +75,23 @@ Page({
             user_name: this.data.username,
             grbh: '',
             tel: this.data.tel
-        }).then(result => {
-            wx.hideLoading();
-            if (result.code === '0') {
-                wx.showToast({
-                    title: result.msg,
-                    icon: 'none'
-                });
-            } else if (result.code === '1') {
-                //成功
-                wx.showToast({
-                    title: result.msg
-                });
-            } else {
-                wx.showToast({
-                    title: '未知错误',
-                    icon: 'error'
-                });
-            }
-        }).catch(e => {
-            wx.hideLoading();
-            console.log(e);
+        });
+        if (result.code === '0') {
             wx.showToast({
-                title: e.errMsg,
+                title: result.msg,
                 icon: 'none'
             });
-        })
+        } else if (result.code === '1') {
+            //成功
+            wx.showToast({
+                title: result.msg
+            });
+        } else {
+            wx.showToast({
+                title: '未知错误',
+                icon: 'error'
+            });
+        }
     },
 
     /**

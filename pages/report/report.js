@@ -10,17 +10,10 @@ Page({
         this.getReports();
     },
 
-    getReports() {
-        request('proxy/wechat/reports', {}).then(result => {
-            this.setData({
-                reports: result.data
-            });
-        }).catch(e => {
-            console.error(e);
-            wx.showToast({
-                title: e.msg,
-                icon: 'none'
-            });
+    async getReports() {
+        const result = await request('proxy/wechat/reports', {});
+        this.setData({
+            reports: result.data
         });
     },
 

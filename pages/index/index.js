@@ -57,7 +57,7 @@ Page({
 
     },
 
-    search() {
+    async search() {
         if (!this.data.username) {
             wx.showToast({
                 title: '请输入姓名',
@@ -97,32 +97,25 @@ Page({
         let hospital = '1';
         let unitCode = this.data.units[this.data.unitIndex].code;
         let doctorCode = this.data.doctors[this.data.doctorIndex].code;
-        request('/WebCall/getAllDoctorDetail', {
+        const result = await request('/WebCall/getAllDoctorDetail', {
             hospital,
             request_day: requestDay,
             unit_code: unitCode,
             doctor_code: doctorCode
-        }).then(result => {
-            if (result) {
-                this.setData({
-                    list: result
-                });
-            } else {
-                wx.showToast({
-                    title: '无排班信息',
-                    icon: 'error'
-                });
-                this.setData({
-                    list: []
-                });
-            }
-        }).catch(e => {
-            console.error(e);
-            wx.showToast({
-                title: e.errMsg,
-                icon: 'error'
-            })
         });
+        if (result) {
+            this.setData({
+                list: result
+            });
+        } else {
+            wx.showToast({
+                title: '无排班信息',
+                icon: 'error'
+            });
+            this.setData({
+                list: []
+            });
+        }
     },
 
     navigateToFinishOrder(event) {

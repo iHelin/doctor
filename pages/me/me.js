@@ -32,25 +32,22 @@ Page({
             success: (result) => {
                 let userInfo = result.userInfo;
                 wx.login({
-                    success: (res) => {
-                        request('proxy/wechat/login', {
+                    success: async (res) => {
+                        const result = await request('proxy/wechat/login', {
                             code: res.code,
                             nickname: userInfo.nickName,
                             avatarUrl: userInfo.avatarUrl
-                        }, 'POST').then((result) => {
-                            if (result.code === 0) {
-                                this.setData({
-                                    hasLogin: true,
-                                    id: result.data.id,
-                                    nickname: userInfo.nickName,
-                                    avatarUrl: userInfo.avatarUrl
-                                });
-                                wx.setStorageSync('token', result.data.token);
-                                this.checkBinding(result.data);
-                            }
-                        }).catch((err) => {
-                            console.log(err, "登录失败");
-                        })
+                        }, 'POST');
+                        if (result.code === 0) {
+                            this.setData({
+                                hasLogin: true,
+                                id: result.data.id,
+                                nickname: userInfo.nickName,
+                                avatarUrl: userInfo.avatarUrl
+                            });
+                            wx.setStorageSync('token', result.data.token);
+                            this.checkBinding(result.data);
+                        }
                     }
                 })
             }
@@ -66,21 +63,18 @@ Page({
         }
     },
     async getUserInfo() {
-        await request('proxy/me', {}, 'get').then((result) => {
-            if (result.code === 0) {
-                this.setData({
-                    id: result.data.id,
-                    nickname: result.data.nickname,
-                    avatarUrl: result.data.avatarUrl
-                });
-                this.checkBinding(result.data);
-            } else {
-                wx.removeStorageSync('token');
-                this.login();
-            }
-        }).catch((err) => {
-            console.log(err, "获取信息失败");
-        })
+        const result = await request('proxy/me', {}, 'get');
+        if (result.code === 0) {
+            this.setData({
+                id: result.data.id,
+                nickname: result.data.nickname,
+                avatarUrl: result.data.avatarUrl
+            });
+            this.checkBinding(result.data);
+        } else {
+            wx.removeStorageSync('token');
+            this.login();
+        }
     },
     checkBinding(data) {
         if (data.binding) {

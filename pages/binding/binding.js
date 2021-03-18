@@ -7,31 +7,25 @@ Page({
         idCard: '',
         telephone: ''
     },
-    binding() {
-        request('proxy/wechat/binding', {
+    async binding() {
+        const result = await request('proxy/wechat/binding', {
             username: this.data.username,
             idCard: this.data.idCard,
             telephone: this.data.telephone
-        }, 'POST').then((result) => {
-            if (result.code === 0) {
-                wx.setStorageSync('refresh', 'true');
-                wx.showToast({
-                    title: '绑定成功！',
-                    icon: 'success'
-                })
-                wx.navigateBack();
-            } else {
-                wx.showToast({
-                    title: result.msg,
-                    icon: 'error'
-                });
-            }
-        }).catch((err) => {
+        }, 'POST');
+        if (result.code === 0) {
+            wx.setStorageSync('refresh', 'true');
             wx.showToast({
-                title: '绑定失败',
+                title: '绑定成功！',
+                icon: 'success'
+            })
+            wx.navigateBack();
+        } else {
+            wx.showToast({
+                title: result.msg,
                 icon: 'error'
             });
-        })
+        }
     },
 
     onLoad(options) {

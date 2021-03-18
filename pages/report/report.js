@@ -12,12 +12,10 @@ Page({
 
     getReports() {
         request('proxy/wechat/reports', {}).then(result => {
-            wx.hideLoading();
             this.setData({
                 reports: result.data
             });
         }).catch(e => {
-            wx.hideLoading();
             console.error(e);
             wx.showToast({
                 title: e.msg,

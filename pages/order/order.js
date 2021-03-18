@@ -12,10 +12,6 @@ Page({
 
     getDataList() {
         let idCard = wx.getStorageSync('idCard');
-        wx.showLoading({
-            title: '加载中',
-            mask: true
-        });
         request('/OrderRegApi/findOrder', {
             hospital: '1',
             id_card: idCard,
@@ -23,7 +19,6 @@ Page({
             grbh: '',
             response_type: '1'
         }).then(result => {
-            wx.hideLoading();
             if (result) {
                 this.setData({
                     orders: result
@@ -38,7 +33,6 @@ Page({
                 });
             }
         }).catch(e => {
-            wx.hideLoading();
             console.error(e);
             wx.showToast({
                 title: e.errMsg,
@@ -55,10 +49,6 @@ Page({
             content: '确定要取消吗？',
             success(res) {
                 if (res.confirm) {
-                    wx.showLoading({
-                        title: '加载中',
-                        mask: true
-                    });
                     request('/OrderRegApi/cancelOrder', {
                         hospital: '1',
                         pre_reqid: item.pre_reqid,
@@ -72,7 +62,6 @@ Page({
                         start_time: item.starttime,
                         end_time: item.endtime
                     }).then(result => {
-                        wx.hideLoading();
                         if (result.code === '0') {
                             wx.showToast({
                                 title: result.msg,
@@ -91,7 +80,6 @@ Page({
                             });
                         }
                     }).catch(e => {
-                        wx.hideLoading();
                         console.error(e);
                         wx.showToast({
                             title: e.errMsg,

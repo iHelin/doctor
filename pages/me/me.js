@@ -33,16 +33,11 @@ Page({
                 let userInfo = result.userInfo;
                 wx.login({
                     success: (res) => {
-                        wx.showLoading({
-                            title: '登录中',
-                            mask: true
-                        });
                         request('proxy/wechat/login', {
                             code: res.code,
                             nickname: userInfo.nickName,
                             avatarUrl: userInfo.avatarUrl
                         }, 'POST').then((result) => {
-                            wx.hideLoading();
                             if (result.code === 0) {
                                 this.setData({
                                     hasLogin: true,
@@ -54,7 +49,6 @@ Page({
                                 this.checkBinding(result.data);
                             }
                         }).catch((err) => {
-                            wx.hideLoading();
                             console.log(err, "登录失败");
                         })
                     }
@@ -62,11 +56,6 @@ Page({
             }
         })
     },
-
-    bindGetUserInfo() {
-        this.login();
-    },
-
     onLoad(options) {
         let hasLogin = !!wx.getStorageSync('token');
         this.setData({
@@ -94,7 +83,7 @@ Page({
         })
     },
     checkBinding(data) {
-        if (data.enabled) {
+        if (data.binding) {
             wx.setStorageSync('username', data.username);
             wx.setStorageSync('idCard', data.idCard);
             wx.setStorageSync('telephone', data.telephone);

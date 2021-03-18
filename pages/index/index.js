@@ -97,17 +97,12 @@ Page({
         let hospital = '1';
         let unitCode = this.data.units[this.data.unitIndex].code;
         let doctorCode = this.data.doctors[this.data.doctorIndex].code;
-        wx.showLoading({
-            title: '加载中',
-            mask: true
-        });
         request('/WebCall/getAllDoctorDetail', {
             hospital,
             request_day: requestDay,
             unit_code: unitCode,
             doctor_code: doctorCode
         }).then(result => {
-            wx.hideLoading();
             if (result) {
                 this.setData({
                     list: result
@@ -122,7 +117,6 @@ Page({
                 });
             }
         }).catch(e => {
-            wx.hideLoading();
             console.error(e);
             wx.showToast({
                 title: e.errMsg,
@@ -153,7 +147,7 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {
+    onShow() {
         let username = wx.getStorageSync('username');
         let idCard = wx.getStorageSync('idCard');
         let tel = wx.getStorageSync('telephone');

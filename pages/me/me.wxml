@@ -8,7 +8,7 @@
             </view>
             <view>
                 <button class="mini-btn" type="primary" size="mini" open-type="getUserInfo"
-                        bindgetuserinfo="bindGetUserInfo">授权登录
+                        bindgetuserinfo="login">授权登录
                 </button>
             </view>
         </view>

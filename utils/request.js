@@ -1,9 +1,8 @@
-// 发送ajax请求
+// const proxy = 'http://localhost:8080';
+const proxy = 'https://sdfyy.hepplai.work/proxy';
 export default (url = '', data = {}, method = 'GET') => {
     return new Promise((resolve, reject) => {
         // 1. new Promise初始化promise实例的状态为pending
-        let proxy = 'http://localhost:8080';
-        // let proxy = 'https://sdfyy.hepplai.work/proxy';
         wx.showLoading({
             title: '加载中',
             mask: true
@@ -16,11 +15,9 @@ export default (url = '', data = {}, method = 'GET') => {
                 Authorization: 'Bearer ' + wx.getStorageSync('token'),
             },
             success: (res) => {
-                // console.log('请求成功: ', res);
                 resolve(res.data); // resolve修改promise的状态为成功状态resolved
             },
             fail: (err) => {
-                // console.log('请求失败: ', err);
                 reject(err); // reject修改promise的状态为失败状态 rejected
             },
             complete() {

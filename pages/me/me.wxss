@@ -1,12 +1,17 @@
-.page-body-info {
-    padding-bottom: 0;
-    height: 230px;
+.header-box {
+    padding: 32rpx 32rpx 64rpx;
+    display: flex;
+    align-items: center;
+    color: #333;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.userinfo-avatar {
-    border-radius: 150rpx;
+.header-box .avatar {
     width: 150rpx;
     height: 150rpx;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .userinfo-nickname {
@@ -15,5 +20,4 @@
 }
 
 .login-btn {
-
 }

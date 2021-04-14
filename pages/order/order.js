@@ -35,13 +35,12 @@ Page({
 
     handleDismiss(event) {
         let item = event.currentTarget.dataset.item;
-        console.log(item);
         wx.showModal({
             title: '提示',
             content: '确定要取消吗？',
             success: async (res) => {
                 if (res.confirm) {
-                    const result = await request('/OrderRegApi/cancelOrder', {
+                    const result = await request('/sdfyy/OrderRegApi/cancelOrder', {
                         hospital: '1',
                         pre_reqid: item.pre_reqid,
                         check_no: item.check_no,

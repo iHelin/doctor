@@ -1,68 +1,59 @@
 import request from "../../utils/request";
 
 Page({
-
     data: {
-        username: '',
-        idCard: '',
-        mobile: ''
+        username: "",
+        idCard: "",
+        mobile: "",
     },
     async binding() {
-        const result = await request('/wechat/binding', {
-            username: this.data.username,
-            idCard: this.data.idCard,
-            mobile: this.data.mobile
-        }, 'POST');
+        const result = await request(
+            "/wechat/binding",
+            {
+                username: this.data.username,
+                idCard: this.data.idCard,
+                mobile: this.data.mobile,
+            },
+            "POST"
+        );
         if (result.code === 0) {
             wx.showToast({
-                title: '绑定成功！',
-                icon: 'success'
-            })
-            wx.navigateBack();
+                title: "绑定成功！",
+                icon: "success",
+            });
+            wx.switchTab({
+                url: "/pages/me/me",
+            });
         } else {
             wx.showToast({
                 title: result.msg,
-                icon: 'error'
+                icon: "error",
             });
         }
     },
 
     onLoad(options) {
-        let username = wx.getStorageSync('username');
-        let idCard = wx.getStorageSync('idCard');
-        let mobile = wx.getStorageSync('mobile');
+        let username = wx.getStorageSync("username");
+        let idCard = wx.getStorageSync("idCard");
+        let mobile = wx.getStorageSync("mobile");
         this.setData({
             username,
             idCard,
-            mobile
+            mobile,
         });
     },
 
-    onReady: function () {
+    onReady: function () {},
 
-    },
+    onShow: function () {},
 
-    onShow: function () {
+    onHide: function () {},
 
-    },
+    onUnload: function () {},
 
-    onHide: function () {
+    onPullDownRefresh: function () {},
 
-    },
+    onReachBottom: function () {},
 
-    onUnload: function () {
-
-    },
-
-    onPullDownRefresh: function () {
-
-    },
-
-    onReachBottom: function () {
-
-    },
-
-    onShareAppMessage: function () {
-
-    }
+    onShareAppMessage: function () {},
 });

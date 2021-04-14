@@ -1,0 +1,11 @@
+.van-swipe-cell__left,
+.van-swipe-cell__right {
+    display: inline-block;
+    width: 65px;
+    height: 232rpx;
+    line-height: 232rpx;
+    font-size: 30rpx;
+    color: #fff;
+    text-align: center;
+    background-color: #ee0a24;
+}

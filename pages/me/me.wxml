@@ -1,28 +1,27 @@
-<view class="page">
-    <view class="page__bd">
-        <view wx:if="{{!hasLogin}}" class="header-box">
+<view class="container">
+    <view wx:if="{{!hasLogin}}" class="header-box">
+        <view class="avatar">
+            <image class="avatar" src="../../images/no-login.png"></image>
+        </view>
+        <view style="margin-top: 50rpx;">
+            <van-button type="primary" size="small" open-type="getUserInfo" bindgetuserinfo="login">授权登录
+            </van-button>
+        </view>
+    </view>
+    <block wx:else>
+        <view class="header-box">
             <view class="avatar">
-                <image class="avatar" src="../../images/no-login.png"></image>
+                <open-data type="userAvatarUrl"></open-data>
             </view>
-            <view>
-                <button class="mini-btn" type="primary" size="mini" open-type="getUserInfo" bindgetuserinfo="login">授权登录
-                </button>
+            <view style="margin-top: 36rpx;">
+                <open-data type="userNickName"></open-data>
             </view>
         </view>
-        <block wx:else>
-            <view class="header-box">
-                <view class="avatar">
-                    <open-data type="userAvatarUrl"></open-data>
-                </view>
-                <view>
-                    <open-data class="nick" type="userNickName"></open-data>
-                </view>
-            </view>
-            <mp-cells ext-class="my-cells" title="">
-                <mp-cell link url="/pages/order/order" value="我的挂号"></mp-cell>
-                <mp-cell link url="/pages/report/report" value="我的报告"></mp-cell>
-                <mp-cell link url="/pages/binding/binding" value="我的绑定"></mp-cell>
-            </mp-cells>
-        </block>
-    </view>
+        <van-cell-group title="关于">
+            <van-cell is-link url="/pages/order/order" title="我的挂号"></van-cell>
+            <van-cell is-link url="/pages/report/report" title="我的报告"></van-cell>
+            <van-cell is-link url="/pages/binding/binding" title="我的绑定"></van-cell>
+        </van-cell-group>
+    </block>
+
 </view>

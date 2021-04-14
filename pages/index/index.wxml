@@ -1,3 +1,4 @@
+<wxs src="/utils/fmt.wxs" module="fmt" />
 <view class="container">
     <van-cell-group title="挂号信息">
         <van-field model:value="{{ username }}" label="姓名" placeholder="请输入姓名" />
@@ -16,17 +17,15 @@
         <van-cell title="日期" bind:click="showDatePopup" value="{{requestDay}}" />
         <van-calendar show="{{ showDate }}" show-confirm="{{ false }}" bind:close="onDateClose"
             bind:confirm="onDateConfirm" />
-        <view>
-            <van-button size="large" block type="primary" bindtap="search">查询</van-button>
-        </view>
     </van-cell-group>
-    <wxs src="/utils/fmt.wxs" module="fmt" />
+    <view class="search-btn">
+        <van-button size="large" block type="primary" bindtap="search">查询</van-button>
+    </view>
     <van-cell-group wx:if="{{result && result.length>0}}" title="查询结果">
         <van-cell wx:for="{{result}}" wx:key="startTime" is-link bind:click="navigateToFinishOrder" data-item="{{item}}"
             title="{{fmt.format(item.startTime)}} - {{fmt.format(item.endTime)}}"
             value="{{item.leftNum}} / {{item.totalNum}}" />
     </van-cell-group>
-
     <van-cell-group wx:if="{{result && result.length <= 0}}" title="查询结果">
         <van-empty description="暂无排班信息" />
     </van-cell-group>

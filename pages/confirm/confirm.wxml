@@ -11,7 +11,7 @@
         <van-cell title="姓名" value="{{username}}" />
         <van-cell title="身份证号" title-width="150rpx" value="{{idCard}}" />
     </vant-cell-group>
-    <view>
+    <view class="search-btn">
         <van-button type="primary" size="large" block bindtap="finishOrder">确认</van-button>
     </view>
 </view>

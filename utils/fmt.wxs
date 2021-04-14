@@ -1,27 +1,60 @@
 var format = function (value) {
-    var m = value.split('').reverse().join('').slice(0, 2).split('').reverse().join('');
-    var h = value.split('').reverse().join('').slice(2, 4).split('').reverse().join('');
-    return h + ':' + m;
+    var m = value
+        .split("")
+        .reverse()
+        .join("")
+        .slice(0, 2)
+        .split("")
+        .reverse()
+        .join("");
+    var h = value
+        .split("")
+        .reverse()
+        .join("")
+        .slice(2, 4)
+        .split("")
+        .reverse()
+        .join("");
+    return h + ":" + m;
 };
 var getOrderStatus = function (value) {
-    var status = '';
+    var status = "";
     switch (value) {
-        case '0':
-            status = '已预约';
+        case "0":
+            status = "已预约";
             break;
-        case '1':
-            status = '已取号';
+        case "1":
+            status = "已取号";
             break;
-        case '2':
-            status = '已取消';
+        case "2":
+            status = "已取消";
             break;
-        case '3':
-            status = '已毁约';
+        case "3":
+            status = "已毁约";
+            break;
+    }
+    return status;
+};
+var getOrderStatusType = function (value) {
+    var status = "";
+    switch (value) {
+        case "0":
+            status = "primary";
+            break;
+        case "1":
+            status = "success";
+            break;
+        case "2":
+            status = "warning";
+            break;
+        case "3":
+            status = "danger";
             break;
     }
     return status;
 };
 module.exports = {
     format: format,
-    getOrderStatus: getOrderStatus
+    getOrderStatus: getOrderStatus,
+    getOrderStatusType: getOrderStatusType,
 };

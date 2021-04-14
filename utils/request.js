@@ -13,6 +13,7 @@ export default (url = '', data = {}, method = 'GET') => {
             method,
             header: {
                 Authorization: 'Bearer ' + wx.getStorageSync('token'),
+                agent: 'wechat'
             },
             success: (res) => {
                 resolve(res.data); // resolve修改promise的状态为成功状态resolved

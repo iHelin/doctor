@@ -13,7 +13,7 @@ Page({
             (new Date().getMonth() + 1) +
             "-" +
             new Date().getDate(),
-        list: null,
+        result: null,
         doctors: [
             {
                 name: "唐晓文",
@@ -155,7 +155,7 @@ Page({
         });
         if (result) {
             this.setData({
-                list: result,
+                result
             });
         } else {
             wx.showToast({
@@ -163,7 +163,7 @@ Page({
                 icon: "error",
             });
             this.setData({
-                list: [],
+                result: [],
             });
         }
     },

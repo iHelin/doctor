@@ -1,53 +1,17 @@
-<!--pages/confirm/confirm.wxml-->
-<view class="page" data-weui-theme="{{theme}}">
-    <!-- <view class="page__hd">
-      <view class="page__title">List</view>
-      <view class="page__desc">列表</view>
-    </view> -->
-    <view class="page__bd">
-        <view class="weui-cells__title">挂号信息</view>
-        <view class="weui-cells weui-cells_after-title">
-            <!-- <view class="weui-cell">
-              <view class="weui-cell__bd">就诊医院</view>
-              <view class="weui-cell__ft">{{doctorName}}</view>
-            </view> -->
-            <view class="weui-cell">
-                <view class="weui-cell__bd">医生姓名</view>
-                <view class="weui-cell__ft">{{doctorName}}</view>
-            </view>
-            <view class="weui-cell">
-                <view class="weui-cell__bd">挂号科室</view>
-                <view class="weui-cell__ft">{{unitCode}}</view>
-            </view>
-            <view class="weui-cell">
-                <view class="weui-cell__bd">挂号日期</view>
-                <view class="weui-cell__ft">{{requestDay}}</view>
-            </view>
-            <view class="weui-cell">
-                <view class="weui-cell__bd">取号时间</view>
-                <wxs src="../../utils/fmt.wxs" module="fmt"/>
-                <view class="weui-cell__ft">{{fmt.format(startTime)}} - {{fmt.format(endTime)}}</view>
-            </view>
-            <view class="weui-cell">
-                <view class="weui-cell__bd">挂号费用</view>
-                <view class="weui-cell__ft">¥ {{clinicFee}}</view>
-            </view>
-        </view>
-        <view class="weui-cells__title">就诊信息</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">姓名</view>
-                <view class="weui-cell__ft">{{username}}</view>
-            </view>
-            <view class="weui-cell">
-                <view class="weui-cell__bd">身份证号</view>
-                <view class="weui-cell__ft">{{idCard}}</view>
-            </view>
-        </view>
-
-        <view class="button-sp-area">
-            <button class="weui-btn weui-btn_primary" type="primary" bindtap="finishOrder">确认</button>
-        </view>
-
+<wxs src="../../utils/fmt.wxs" module="fmt" />
+<view class="container">
+    <vant-cell-group title="挂号信息">
+        <van-cell title="医生姓名" value="{{doctorName}}" />
+        <van-cell title="挂号科室" value="{{unitCode}}" />
+        <van-cell title="挂号日期" value="{{requestDay}}" />
+        <van-cell title="取号时间" value="{{fmt.format(startTime)}} - {{fmt.format(endTime)}}" />
+        <van-cell title="挂号费用" value="¥ {{clinicFee}}" />
+    </vant-cell-group>
+    <vant-cell-group title="就诊信息">
+        <van-cell title="姓名" value="{{username}}" />
+        <van-cell title="身份证号" title-width="150rpx" value="{{idCard}}" />
+    </vant-cell-group>
+    <view>
+        <van-button type="primary" size="large" block bindtap="finishOrder">确认</van-button>
     </view>
 </view>

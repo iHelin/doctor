@@ -1,112 +1,33 @@
-<view class="page form_page js_show" data-weui-theme="{{theme}}">
-    <view class="page__bd">
-        <view class="weui-form">
-            <!--      <view class="weui-form__control-area">-->
-            <view class="">
-<!--                <view style="margin:0 20rpx;text-align:center;">{{hitokoto}}</view>-->
-                <view class="weui-cells__group weui-cells__group_form">
-                    <view class="weui-cells__title">挂号</view>
-                    <view class="weui-cells weui-cells_form">
-                        <view class="weui-cell weui-cell_active">
-                            <view class="weui-cell__hd">
-                                <label class="weui-label">姓名</label>
-                            </view>
-                            <view class="weui-cell__bd">
-                                <input class="weui-input"
-                                       model:value="{{username}}"
-                                       placeholder="填写姓名"/>
-                            </view>
-                        </view>
-                        <view class="weui-cell weui-cell_active">
-                            <view class="weui-cell__hd">
-                                <label class="weui-label">身份证号</label>
-                            </view>
-                            <view class="weui-cell__bd">
-                                <input model:value="{{idCard}}"
-                                       class="weui-input"
-                                       placeholder="填写身份证号"/>
-                            </view>
-                        </view>
-                        <view class="weui-cell weui-cell_active">
-                            <view class="weui-cell__hd">
-                                <label class="weui-label">联系电话</label>
-                            </view>
-                            <view class="weui-cell__bd">
-                                <input model:value="{{tel}}"
-                                       class="weui-input"
-                                       placeholder="填写联系电话"
-                                       type="number"
-                                       pattern="[0-9]*"/>
-                            </view>
-                        </view>
-
-                        <view class="weui-cell weui-cell_active">
-                            <view class="weui-cell__hd">
-                                <label class="weui-label">医生</label>
-                            </view>
-                            <view class="weui-cell__bd">
-                                <picker range="{{doctors}}"
-                                        range-key="name"
-                                        model:value="{{doctorIndex}}">
-                                    {{doctors[doctorIndex].name}}
-                                </picker>
-                            </view>
-                        </view>
-
-                        <view class="weui-cell weui-cell_active">
-                            <view class="weui-cell__hd">
-                                <label class="weui-label">科室</label>
-                            </view>
-                            <view class="weui-cell__bd">
-                                <picker range="{{units}}"
-                                        range-key="name"
-                                        model:value="{{unitIndex}}">
-                                    {{units[unitIndex].name}}
-                                </picker>
-                            </view>
-                        </view>
-
-                        <view class="weui-cell weui-cell_active">
-                            <view class="weui-cell__hd">
-                                <label class="weui-label">日期</label>
-                            </view>
-                            <view class="weui-cell__bd">
-                                <picker mode="date"
-                                        model:value="{{requestDay}}">
-                                    {{requestDay}}
-                                </picker>
-                            </view>
-                        </view>
-                    </view>
-                </view>
-            </view>
-            <view>
-                <button class="weui-btn" type="primary" bindtap="search">查询</button>
-            </view>
-
+<view class="container">
+    <van-cell-group title="挂号信息">
+        <van-field model:value="{{ username }}" label="姓名" placeholder="请输入姓名" />
+        <van-field model:value="{{idCard}}" label="身份证号" placeholder="填写身份证号" />
+        <van-field model:value="{{tel}}" label="联系电话" placeholder="填写联系电话" type="number" pattern="[0-9]*" />
+        <van-cell title="医生" bind:click="showDoctorPopup" value="{{doctors[doctorIndex].name}}" />
+        <van-popup show="{{ showDoctor }}" position="bottom" closeable bind:close="onDoctorClose">
+            <van-picker columns="{{ doctors }}" default-index="{{ doctorIndex }}" value-key="name"
+                bind:change="onDoctorChange" />
+        </van-popup>
+        <van-cell title-width="80rpx" title="科室" bind:click="showUnitPopup" value="{{units[unitIndex].name}}" />
+        <van-popup show="{{ showUnit }}" position="bottom" closeable bind:close="onUnitClose">
+            <van-picker columns="{{ units }}" default-index="{{ unitIndex }}" value-key="name"
+                bind:change="onUnitChange" />
+        </van-popup>
+        <van-cell title="日期" bind:click="showDatePopup" value="{{requestDay}}" />
+        <van-calendar show="{{ showDate }}" show-confirm="{{ false }}" bind:close="onDateClose"
+            bind:confirm="onDateConfirm" />
+        <view>
+            <van-button size="large" block type="primary" bindtap="search">查询</van-button>
         </view>
+    </van-cell-group>
+    <wxs src="/utils/fmt.wxs" module="fmt" />
+    <van-cell-group wx:if="{{list && list.length>0}}" title="查询结果">
+        <van-cell wx:for="{{list}}" wx:key="startTime" is-link bind:click="navigateToFinishOrder" data-item="{{item}}"
+            title="{{fmt.format(item.startTime)}} - {{fmt.format(item.endTime)}}"
+            value="{{item.leftNum}} / {{item.totalNum}}" />
+    </van-cell-group>
 
-        <view wx:if="{{list && list.length>0}}">
-            <view class="weui-cells weui-cells_after-title">
-                <view wx:for="{{list}}"
-                      wx:key="startTime"
-                      data-item="{{item}}"
-                      bindtap="navigateToFinishOrder"
-                      class="weui-cell weui-cell_access"
-                      hover-class="weui-cell_active">
-                    <wxs src="../../utils/fmt.wxs" module="fmt"/>
-                    <view class="weui-cell__bd">{{fmt.format(item.startTime)}} - {{fmt.format(item.endTime)}}</view>
-                    <view class="weui-cell__ft weui-cell__ft_in-access">{{item.leftNum}} / {{item.totalNum}}</view>
-                </view>
-            </view>
-        </view>
-
-        <view wx:elif="{{list && list.length <= 0}}" class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd no-msg">暂无排班信息</view>
-                <!-- <view class="weui-cell__ft">说明文字</view> -->
-            </view>
-        </view>
-
-    </view>
+    <van-cell-group wx:if="{{list && list.length <= 0}}" title="查询结果">
+        <van-empty description="暂无排班信息" />
+    </van-cell-group>
 </view>

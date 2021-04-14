@@ -8,13 +8,12 @@ Page({
         mobile: ''
     },
     async binding() {
-        const result = await request('proxy/wechat/binding', {
+        const result = await request('/wechat/binding', {
             username: this.data.username,
             idCard: this.data.idCard,
             mobile: this.data.mobile
         }, 'POST');
         if (result.code === 0) {
-            wx.setStorageSync('refresh', 'true');
             wx.showToast({
                 title: '绑定成功！',
                 icon: 'success'

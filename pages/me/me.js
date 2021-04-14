@@ -17,12 +17,6 @@ Page({
                 hasLogin: false,
             });
         }
-
-        let updateInfo = wx.getStorageSync("refresh");
-        if (updateInfo) {
-            this.getUserInfo();
-            wx.removeStorageSync("refresh");
-        }
     },
     login() {
         wx.getUserInfo({
@@ -31,7 +25,7 @@ Page({
                 wx.login({
                     success: async (res) => {
                         const result = await request(
-                            "proxy/wechat/login",
+                            "/wechat/login",
                             {
                                 code: res.code,
                                 nickname: userInfo.nickName,
@@ -41,7 +35,7 @@ Page({
                         );
                         if (result.code === 0) {
                             this.setData({
-                                hasLogin: true
+                                hasLogin: true,
                             });
                             wx.setStorageSync("token", result.data.token);
                             this.checkBinding(result.data);
@@ -52,7 +46,7 @@ Page({
         });
     },
     async getUserInfo() {
-        const result = await request("proxy/me", {}, "get");
+        const result = await request("/wechat/me", {}, "get");
         if (result.code === 0) {
             this.setData({
                 id: result.data.id,

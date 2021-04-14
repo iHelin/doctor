@@ -11,7 +11,7 @@ Page({
     },
 
     async getReports() {
-        const result = await request('proxy/wechat/reports', {});
+        const result = await request('wechat/reports', {});
         this.setData({
             reports: result.data
         });

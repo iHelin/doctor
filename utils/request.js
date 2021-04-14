@@ -1,6 +1,7 @@
-const proxy = 'https://www.hepplai.work';
-// const proxy = "http://localhost:8080";
+const API_BASE_URL = "https://www.hepplai.work";
+// const API_BASE_URL = "http://localhost:8080";
 export default (url = "", data = {}, method = "GET") => {
+    const proxyUrl = API_BASE_URL + url;
     return new Promise((resolve, reject) => {
         // 1. new Promise初始化promise实例的状态为pending
         wx.showLoading({
@@ -8,22 +9,23 @@ export default (url = "", data = {}, method = "GET") => {
             mask: true,
         });
         wx.request({
-            url: url.startsWith("proxy")
-                ? proxy + url.replace("proxy", "")
-                : proxy + url,
+            url: proxyUrl,
             data,
             method,
             header: {
                 Authorization: "Bearer " + wx.getStorageSync("token"),
                 agent: "wechat",
             },
-            success: (res) => {
-                resolve(res.data); // resolve修改promise的状态为成功状态resolved
+            success: (response) => {
+                if (response.data && response.data.code === 401) {
+                    wx.removeStorageSync("token");
+                }
+                resolve(response.data);
             },
             fail: (err) => {
-                reject(err); // reject修改promise的状态为失败状态 rejected
+                reject(err);
             },
-            complete() {
+            complete: () => {
                 wx.hideLoading();
             },
         });

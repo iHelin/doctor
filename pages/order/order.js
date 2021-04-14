@@ -15,7 +15,6 @@ Page({
         const result = await request('/sdfyy/OrderRegApi/findOrder', {
             hospital: '1',
             id_card: idCard,
-            // id_card: '340827199208104734',
             grbh: '',
             response_type: '1'
         });

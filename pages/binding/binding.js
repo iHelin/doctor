@@ -5,13 +5,13 @@ Page({
     data: {
         username: '',
         idCard: '',
-        telephone: ''
+        mobile: ''
     },
     async binding() {
         const result = await request('proxy/wechat/binding', {
             username: this.data.username,
             idCard: this.data.idCard,
-            telephone: this.data.telephone
+            mobile: this.data.mobile
         }, 'POST');
         if (result.code === 0) {
             wx.setStorageSync('refresh', 'true');
@@ -31,11 +31,11 @@ Page({
     onLoad(options) {
         let username = wx.getStorageSync('username');
         let idCard = wx.getStorageSync('idCard');
-        let telephone = wx.getStorageSync('telephone');
+        let mobile = wx.getStorageSync('mobile');
         this.setData({
             username,
             idCard,
-            telephone
+            mobile
         });
     },
 

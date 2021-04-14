@@ -12,7 +12,7 @@ Page({
 
     async getDataList() {
         let idCard = wx.getStorageSync('idCard');
-        const result = await request('/OrderRegApi/findOrder', {
+        const result = await request('/sdfyy/OrderRegApi/findOrder', {
             hospital: '1',
             id_card: idCard,
             // id_card: '340827199208104734',

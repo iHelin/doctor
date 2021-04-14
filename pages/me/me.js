@@ -69,7 +69,7 @@ Page({
         if (data.binding) {
             wx.setStorageSync("username", data.username);
             wx.setStorageSync("idCard", data.idCard);
-            wx.setStorageSync("telephone", data.telephone);
+            wx.setStorageSync("mobile", data.mobile);
         } else {
             wx.showModal({
                 title: "提示",

@@ -30,7 +30,7 @@
                                 <label class="weui-label">联系电话</label>
                             </view>
                             <view class="weui-cell__bd">
-                                <input model:value="{{telephone}}"
+                                <input model:value="{{mobile}}"
                                        class="weui-input"
                                        placeholder="联系电话"
                                        type="number"

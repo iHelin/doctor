@@ -83,7 +83,7 @@ Page({
             })
             return;
         }
-        wx.setStorageSync('telephone', this.data.tel);
+        wx.setStorageSync('mobile', this.data.tel);
 
         let requestDay = this.data.requestDay;
         if (!requestDay) {
@@ -97,7 +97,7 @@ Page({
         let hospital = '1';
         let unitCode = this.data.units[this.data.unitIndex].code;
         let doctorCode = this.data.doctors[this.data.doctorIndex].code;
-        const result = await request('/WebCall/getAllDoctorDetail', {
+        const result = await request('/sdfyy/WebCall/getAllDoctorDetail', {
             hospital,
             request_day: requestDay,
             unit_code: unitCode,
@@ -143,7 +143,7 @@ Page({
     onShow() {
         let username = wx.getStorageSync('username');
         let idCard = wx.getStorageSync('idCard');
-        let tel = wx.getStorageSync('telephone');
+        let tel = wx.getStorageSync('mobile');
         this.setData({
             username,
             idCard,

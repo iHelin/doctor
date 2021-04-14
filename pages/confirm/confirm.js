@@ -21,12 +21,10 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-        // console.log(options);
-
+    onLoad (options) {
         let username = wx.getStorageSync('username');
         let idCard = wx.getStorageSync('idCard');
-        let tel = wx.getStorageSync('telephone');
+        let tel = wx.getStorageSync('mobile');
 
         this.setData({
             ampm: options.ampm,
@@ -57,7 +55,7 @@ Page({
                 chargeType = '12';
             }
         }
-        const result = await request('/OrderRegApi/finishOrder', {
+        const result = await request('/sdfyy/OrderRegApi/finishOrder', {
             sex,
             born,
             id_card: idCard,

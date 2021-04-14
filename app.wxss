@@ -1,20 +1,13 @@
-@import "style/weui.wxss";
 
 /* reset */
 page {
-    background-color: var(--weui-BG-1);
-    height: 100%;
-    /* font-size: 16px; */
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--weui-FG-0);
     display: flex;
     justify-content: center;
 }
 
 page > view {
     width: 100vw;
-    max-width: 600px;
+    /* max-width: 600px; */
 }
 
 checkbox, radio {

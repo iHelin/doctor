@@ -1,9 +1,8 @@
 import request from "../../utils/request";
 
 Page({
-
     data: {
-        orders: []
+        orders: [],
     },
 
     onLoad(options) {
@@ -11,24 +10,24 @@ Page({
     },
 
     async getDataList() {
-        let idCard = wx.getStorageSync('idCard');
-        const result = await request('/sdfyy/OrderRegApi/findOrder', {
-            hospital: '1',
+        let idCard = wx.getStorageSync("idCard");
+        const result = await request("/sdfyy/OrderRegApi/findOrder", {
+            hospital: "1",
             id_card: idCard,
-            grbh: '',
-            response_type: '1'
+            grbh: "",
+            response_type: "1",
         });
         if (result) {
             this.setData({
-                orders: result
+                orders: result,
             });
         } else {
             wx.showToast({
-                title: '无信息',
-                icon: 'error'
+                title: "无信息",
+                icon: "error",
             });
             this.setData({
-                orders: []
+                orders: [],
             });
         }
     },
@@ -36,70 +35,62 @@ Page({
     handleDismiss(event) {
         let item = event.currentTarget.dataset.item;
         wx.showModal({
-            title: '提示',
-            content: '确定要取消吗？',
+            title: "提示",
+            content: "确定要取消吗？",
             success: async (res) => {
                 if (res.confirm) {
-                    const result = await request('/sdfyy/OrderRegApi/cancelOrder', {
-                        hospital: '1',
-                        pre_reqid: item.pre_reqid,
-                        check_no: item.check_no,
-                        request_day: item.request_day,
-                        unit_code: item.unit_code,
-                        doctor_code: item.doctor_code,
-                        ampm: item.ampm,
-                        charge_type: item.charge_type,
-                        pre_type: item.pre_type,
-                        start_time: item.starttime,
-                        end_time: item.endtime
-                    });
-                    if (result.code === '0') {
+                    const result = await request(
+                        "/sdfyy/OrderRegApi/cancelOrder",
+                        {
+                            hospital: "1",
+                            pre_reqid: item.pre_reqid,
+                            check_no: item.check_no,
+                            request_day: item.request_day,
+                            unit_code: item.unit_code,
+                            doctor_code: item.doctor_code,
+                            ampm: item.ampm,
+                            charge_type: item.charge_type,
+                            pre_type: item.pre_type,
+                            start_time: item.starttime,
+                            end_time: item.endtime,
+                        }
+                    );
+                    if (result.code === "0") {
                         wx.showToast({
                             title: result.msg,
-                            icon: 'none'
+                            icon: "none",
                         });
-                    } else if (result.code === '1') {
+                    } else if (result.code === "1") {
                         //成功
                         wx.showToast({
-                            title: result.msg
+                            title: result.msg,
+                            icon: "success",
+                            complete: () => {
+                                this.getDataList();
+                            },
                         });
-                        this.getDataList();
                     } else {
                         wx.showToast({
-                            title: '未知错误',
-                            icon: 'error'
+                            title: "未知错误",
+                            icon: "error",
                         });
                     }
                 }
-            }
-        })
+            },
+        });
     },
 
-    onReady: function () {
+    onReady: function () {},
 
-    },
+    onShow: function () {},
 
-    onShow: function () {
+    onHide: function () {},
 
-    },
+    onUnload: function () {},
 
-    onHide: function () {
+    onPullDownRefresh: function () {},
 
-    },
+    onReachBottom: function () {},
 
-    onUnload: function () {
-
-    },
-
-    onPullDownRefresh: function () {
-
-    },
-
-    onReachBottom: function () {
-
-    },
-
-    onShareAppMessage: function () {
-
-    }
+    onShareAppMessage: function () {},
 });

@@ -20,9 +20,11 @@ Page({
             wx.showToast({
                 title: "绑定成功！",
                 icon: "success",
-            });
-            wx.switchTab({
-                url: "/pages/me/me",
+                complete: () => {
+                    wx.switchTab({
+                        url: "/pages/me/me",
+                    });
+                },
             });
         } else {
             wx.showToast({

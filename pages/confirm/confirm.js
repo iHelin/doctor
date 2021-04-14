@@ -88,8 +88,7 @@ Page({
             wx.showToast({
                 title: result.msg,
                 icon: "success",
-                complete() {
-                    console.log(123);
+                complete: () => {
                     wx.redirectTo({
                         url: "/pages/order/order",
                     });

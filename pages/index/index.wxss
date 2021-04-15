@@ -22,18 +22,16 @@
 }
 
 .swiper-container {
-    width: 750rpx;
     height: 375rpx;
     position: relative;
 }
 
-.swiper-container .swiper1 {
-    width: 750rpx;
+.swiper-container .sbanner-swiper {
     height: 375rpx;
 }
 
-.swiper-container .swiper1 image {
-    width: 750rpx;
+.swiper-container .sbanner-swiper image {
+    width: 100%;
     height: 375rpx;
 }
 

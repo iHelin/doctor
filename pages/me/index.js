@@ -4,12 +4,10 @@ import request from "../../utils/request";
 Page({
     data: {
         hasLogin: false,
-        userId: null,
+        vip: false,
         binding: false,
     },
-    onLoad(options) {
-        userId: wx.getStorageSync("userId");
-    },
+    onLoad(options) {},
     onShow() {
         if (wx.getStorageSync("token")) {
             this.setData({
@@ -72,8 +70,8 @@ Page({
             wx.setStorageSync("idCard", data.idCard);
             wx.setStorageSync("mobile", data.mobile);
             this.setData({
-                userId,
                 binding: true,
+                vip: data.vip,
             });
         } else {
             this.setData({

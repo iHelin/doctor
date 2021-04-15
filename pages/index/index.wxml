@@ -1,7 +1,7 @@
 <wxs src="/utils/fmt.wxs" module="fmt" />
 <view class="container">
     <view class="swiper-container">
-        <swiper class="swiper1" indicator-dots="true" indicator-active-color="#fff" autoplay circular>
+        <swiper class="sbanner-swiper" indicator-dots="true" indicator-active-color="#fff" autoplay circular>
             <swiper-item wx:for="{{banners}}" wx:key="id">
                 <image mode="aspectFill" bindtap="goBanner" data-url="{{item.linkUrl}}" src="{{item.picUrl}}" />
             </swiper-item>
@@ -11,7 +11,7 @@
         <swiper class="notice_swiper" vertical autoplay circular interval="8000">
             <swiper-item wx:for="{{notices}}" wx:key="id">
                 <van-notice-bar left-icon="volume-o" mode="link" text="{{ item.title }}" background="#FFFFFF"
-                    data-id="{{ item.id }}" speed="30" bind:click="goNotice" />
+                    data-id="{{ item.id }}" speed="50" bind:click="goNotice" />
             </swiper-item>
         </swiper>
     </view>

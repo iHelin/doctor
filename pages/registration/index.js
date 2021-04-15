@@ -74,6 +74,7 @@ Page({
             }
             return day;
         },
+        dateInterval: null,
     },
     showDoctorPopup() {
         this.setData({ showDoctor: true });
@@ -105,22 +106,42 @@ Page({
             unitIndex: index,
         });
     },
-    formatDate(date) {
-        date = new Date(date);
-        return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-    },
     onDateConfirm(event) {
+        const date = new Date(event.detail);
         this.setData({
             showDate: false,
-            requestDay: this.formatDate(event.detail),
+            requestDay: `${date.getFullYear()}-${
+                date.getMonth() + 1
+            }-${date.getDate()}`,
         });
     },
     onLoad(options) {
+        const agreePrivacy = wx.getStorageSync("agreePrivacy");
+        if (!agreePrivacy) {
+            wx.showModal({
+                title: "重要提示",
+                content:
+                    "您的姓名，身份证号和手机号为系统查询和确认挂号时的必填项，该小程序不会收集您的以上隐私信息，请知晓！",
+                confirmText: "同意",
+                cancelText: "不同意",
+                success(res) {
+                    if (res.confirm) {
+                        wx.setStorageSync("agreePrivacy", true);
+                    } else if (res.cancel) {
+                        wx.removeStorageSync("agreePrivacy");
+                        wx.navigateBack();
+                    }
+                },
+            });
+        }
         let date = new Date();
-        date.setDate(date.getDate() + 15);
-        this.setData({
-            maxDate: date.getTime(),
-        });
+        let maxDateMilliSeconds = date.getTime() + 18.5 * 24 * 60 * 60 * 1000;
+        this.data.dateInterval = setInterval(() => {
+            maxDateMilliSeconds += 1000;
+            this.setData({
+                maxDate: maxDateMilliSeconds,
+            });
+        }, 1000);
     },
     onShow() {
         let username = wx.getStorageSync("username");
@@ -217,7 +238,9 @@ Page({
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function () {},
+    onUnload() {
+        clearInterval(this.data.dateInterval);
+    },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作

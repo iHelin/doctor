@@ -1,12 +1,10 @@
-<view class="page" data-weui-theme="{{theme}}">
-    <view class="page__bd">
-        <view class="weui-article" style="padding-top:12px;" wx:if="{{notice}}">
-            <view class="weui-article__h2" style="text-align:center;">{{notice.title}}</view>
-            <van-divider dashed contentPosition="center">{{notice.createTime}}</van-divider>
-            <view class="weui-article__section">
-                <rich-text nodes="{{notice.content}}" space="nbsp"></rich-text>
-            </view>
+<view class="container">
+    <view style="padding-top:24rpx;" wx:if="{{notice}}">
+        <view class="weui-article__h2" style="text-align:center;">{{notice.title}}</view>
+        <van-divider dashed contentPosition="center">{{notice.createTime}}</van-divider>
+        <view class="weui-article__section">
+            <rich-text nodes="{{notice.content}}" space="nbsp"></rich-text>
         </view>
-        <van-empty wx:else description="暂无公告" />
     </view>
+    <van-empty wx:else description="暂无公告" />
 </view>

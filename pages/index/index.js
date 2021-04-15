@@ -65,6 +65,17 @@ Page({
         showDoctor: false,
         showUnit: false,
         showDate: false,
+        dateFormatter(day) {
+            const month = day.date.getMonth() + 1;
+            const weekIndex = day.date.getDay();
+            if (weekIndex === 1) {
+                day.topInfo = "*";
+            }
+            if (weekIndex === 4) {
+                day.topInfo = "特需";
+            }
+            return day;
+        },
     },
     showDoctorPopup() {
         this.setData({ showDoctor: true });
@@ -155,7 +166,7 @@ Page({
         });
         if (result) {
             this.setData({
-                result
+                result,
             });
         } else {
             wx.showToast({

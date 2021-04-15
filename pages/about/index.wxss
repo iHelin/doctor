@@ -1,0 +1,18 @@
+.info {
+    font-size: 32rpx;
+    /*text-align: center;*/
+    padding: 0 40rpx;
+    /*text-indent: 40rpx;*/
+    color: #3e3e3e;
+}
+
+.title {
+    color: #2b9ab6;
+    margin-top: 40rpx;
+    text-align: center;
+    margin-bottom: 10rpx;
+}
+
+.weui-article__h3 {
+    text-align: center;
+}

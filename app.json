@@ -1,13 +1,17 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/order/order",
-        "pages/binding/binding",
-        "pages/me/me",
-        "pages/report/report",
+        "pages/about/index",
+        "pages/notice/index",
+        "pages/advance/index",
+        "pages/registration/index",
+        "pages/order/index",
+        "pages/binding/index",
+        "pages/me/index",
+        "pages/report/index",
         "pages/test/test",
-        "pages/confirm/confirm",
-        "pages/reportDetail/reportDetail"
+        "pages/confirm/index",
+        "pages/reportDetail/index"
     ],
     "window": {
         "backgroundColor": "#fff",
@@ -27,7 +31,7 @@
                 "text": "首页"
             },
             {
-                "pagePath": "pages/me/me",
+                "pagePath": "pages/me/index",
                 "iconPath": "images/me.png",
                 "selectedIconPath": "images/me-select.png",
                 "text": "我"

@@ -1,5 +1,5 @@
-const API_BASE_URL = "https://www.hepplai.work";
-// const API_BASE_URL = "http://localhost:8080";
+// const API_BASE_URL = "https://www.hepplai.work";
+const API_BASE_URL = "http://localhost:8080";
 export default (url = "", data = {}, method = "GET") => {
     const proxyUrl = API_BASE_URL + url;
     return new Promise((resolve, reject) => {

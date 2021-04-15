@@ -1,4 +1,4 @@
-// pages/confirm/confirm.js
+// pages/confirm/index.js
 import request from "../../utils/request";
 
 Page({
@@ -90,7 +90,7 @@ Page({
                 icon: "success",
                 complete: () => {
                     wx.redirectTo({
-                        url: "/pages/order/order",
+                        url: "/pages/order/index",
                     });
                 },
             });

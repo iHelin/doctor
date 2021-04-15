@@ -22,7 +22,7 @@ Page({
                 icon: "success",
                 complete: () => {
                     wx.switchTab({
-                        url: "/pages/me/me",
+                        url: "/pages/me/index",
                     });
                 },
             });

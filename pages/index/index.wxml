@@ -1,32 +1,22 @@
 <wxs src="/utils/fmt.wxs" module="fmt" />
 <view class="container">
-    <van-cell-group title="挂号信息">
-        <van-field model:value="{{ username }}" label="姓名" placeholder="请输入姓名" />
-        <van-field model:value="{{idCard}}" label="身份证号" placeholder="填写身份证号" />
-        <van-field model:value="{{tel}}" label="联系电话" placeholder="填写联系电话" type="number" pattern="[0-9]*" />
-        <van-cell title="医生" bind:click="showDoctorPopup" value="{{doctors[doctorIndex].name}}" />
-        <van-popup show="{{ showDoctor }}" position="bottom" bind:close="onDoctorClose">
-            <van-picker show-toolbar bind:confirm="onDoctorClose" bind:cancel="onDoctorClose" columns="{{ doctors }}"
-                default-index="{{ doctorIndex }}" value-key="name" bind:change="onDoctorChange" />
-        </van-popup>
-        <van-cell title-width="80rpx" title="科室" bind:click="showUnitPopup" value="{{units[unitIndex].name}}" />
-        <van-popup show="{{ showUnit }}" position="bottom" bind:close="onUnitClose">
-            <van-picker show-toolbar bind:confirm="onUnitClose" bind:cancel="onUnitClose" columns="{{ units }}" default-index="{{ unitIndex }}" value-key="name"
-                bind:change="onUnitChange" />
-        </van-popup>
-        <van-cell title="日期" bind:click="showDatePopup" value="{{requestDay}}" />
-        <van-calendar show="{{ showDate }}" show-confirm="{{ false }}" bind:close="onDateClose"
-            formatter="{{ dateFormatter }}" bind:confirm="onDateConfirm" />
-    </van-cell-group>
-    <view class="search-btn">
-        <van-button size="large" block type="primary" bindtap="search">查询</van-button>
+    <view class="swiper-container">
+        <swiper class="swiper1" indicator-dots="true" indicator-active-color="#fff" autoplay circular>
+            <swiper-item wx:for="{{banners}}" wx:key="id">
+                <image mode="aspectFill" bindtap="goBanner" data-url="{{item.linkUrl}}" src="{{item.picUrl}}" />
+            </swiper-item>
+        </swiper>
     </view>
-    <van-cell-group wx:if="{{result && result.length>0}}" title="查询结果">
-        <van-cell wx:for="{{result}}" wx:key="startTime" is-link bind:click="navigateToFinishOrder" data-item="{{item}}"
-            title="{{fmt.format(item.startTime)}} - {{fmt.format(item.endTime)}}"
-            value="{{item.leftNum}} / {{item.totalNum}}" />
-    </van-cell-group>
-    <van-cell-group wx:if="{{result && result.length <= 0}}" title="查询结果">
-        <van-empty description="暂无排班信息" />
-    </van-cell-group>
+    <view class="notice-box" wx:if="{{notices}}">
+        <swiper class="notice_swiper" vertical autoplay circular interval="8000">
+            <swiper-item wx:for="{{notices}}" wx:key="id">
+                <van-notice-bar left-icon="volume-o" mode="link" text="{{ item.title }}" background="#FFFFFF"
+                    data-id="{{ item.id }}" speed="30" bind:click="goNotice" />
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class='space'></view>
+    <view class="weui-article">
+        <rich-text nodes="{{articleContent}}" space="nbsp"></rich-text>
+    </view>
 </view>

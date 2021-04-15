@@ -11,11 +11,11 @@
         </van-popup>
         <van-cell title-width="80rpx" title="科室" bind:click="showUnitPopup" value="{{units[unitIndex].name}}" />
         <van-popup show="{{ showUnit }}" position="bottom" bind:close="onUnitClose">
-            <van-picker show-toolbar bind:confirm="onUnitClose" bind:cancel="onUnitClose" columns="{{ units }}" default-index="{{ unitIndex }}" value-key="name"
-                bind:change="onUnitChange" />
+            <van-picker show-toolbar bind:confirm="onUnitClose" bind:cancel="onUnitClose" columns="{{ units }}"
+                default-index="{{ unitIndex }}" value-key="name" bind:change="onUnitChange" />
         </van-popup>
         <van-cell title="日期" bind:click="showDatePopup" value="{{requestDay}}" />
-        <van-calendar show="{{ showDate }}" show-confirm="{{ false }}" bind:close="onDateClose"
+        <van-calendar show="{{ showDate }}" show-confirm="{{ false }}" bind:close="onDateClose" max-date="{{ maxDate }}"
             formatter="{{ dateFormatter }}" bind:confirm="onDateConfirm" />
     </van-cell-group>
     <view class="search-btn">

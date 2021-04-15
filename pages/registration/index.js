@@ -62,6 +62,7 @@ Page({
         showDoctor: false,
         showUnit: false,
         showDate: false,
+        maxDate: new Date().getTime(),
         dateFormatter(day) {
             const month = day.date.getMonth() + 1;
             const weekIndex = day.date.getDay();
@@ -114,7 +115,13 @@ Page({
             requestDay: this.formatDate(event.detail),
         });
     },
-    onLoad(options) {},
+    onLoad(options) {
+        let date = new Date();
+        date.setDate(date.getDate() + 15);
+        this.setData({
+            maxDate: date.getTime(),
+        });
+    },
     onShow() {
         let username = wx.getStorageSync("username");
         let idCard = wx.getStorageSync("idCard");

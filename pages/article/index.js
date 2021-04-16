@@ -2,15 +2,21 @@ import request from "../../utils/request";
 
 Page({
     data: {
-        notice: null,
+        article: null,
+        articleId: null,
+        articleType: "",
     },
     onLoad(options) {
-        this.getNotice(options.id);
+        this.setData({
+            articleType: options.type,
+            articleId: options.id,
+        });
+        this.getArticle();
     },
-    async getNotice(id) {
+    async getArticle() {
         const result = await request("/wechat/article/info", {
-            noticeId: id,
-            type: "notice",
+            id: this.data.articleId,
+            type: this.data.articleType,
         });
         if (result.code !== 0) {
             wx.showModal({
@@ -19,13 +25,13 @@ Page({
                 showCancel: false,
             });
         } else {
-            let notice = result.data;
-            notice.content = notice.content.replace(
+            let article = result.data;
+            article.content = article.content.replace(
                 /<img/gi,
                 '<img style="max-width:100%;height:auto"'
             );
             this.setData({
-                notice,
+                article,
             });
         }
     },

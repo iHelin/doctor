@@ -1,0 +1,10 @@
+<view class="container">
+    <view style="padding-top:24rpx;" wx:if="{{article}}">
+        <view class="weui-article__h2" style="text-align:center;">{{article.title}}</view>
+        <van-divider dashed contentPosition="center">{{article.createTime}}</van-divider>
+        <view class="weui-article__section">
+            <rich-text nodes="{{article.content}}" space="nbsp"></rich-text>
+        </view>
+    </view>
+    <van-empty wx:else description="暂无内容" />
+</view>

@@ -75,7 +75,7 @@ Page({
     goNotice(e) {
         const id = e.currentTarget.dataset.id;
         wx.navigateTo({
-            url: `/pages/notice/index?id=${id}`,
+            url: `/pages/article/index?id=${id}&type=notice`,
         });
     },
 

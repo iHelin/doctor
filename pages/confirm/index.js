@@ -1,5 +1,6 @@
 // pages/confirm/index.js
 import request from "../../utils/request";
+import { getCurrentDay } from "../../utils/util";
 
 Page({
     /**
@@ -84,7 +85,9 @@ Page({
                 icon: "none",
             });
         } else if (result.code === "1") {
-            //成功
+            //成功 一天只能挂一单
+            let currentDate = getCurrentDay();
+            wx.setStorageSync("submitOrder", currentDate);
             wx.showToast({
                 title: result.msg,
                 icon: "success",

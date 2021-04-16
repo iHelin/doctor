@@ -1,4 +1,5 @@
 import request from "../../utils/request";
+import { getCurrentDay } from "../../utils/util";
 Page({
     data: {
         username: "",
@@ -75,6 +76,7 @@ Page({
             return day;
         },
         dateInterval: null,
+        searchDisabled: false,
     },
     showDoctorPopup() {
         this.setData({ showDoctor: true });
@@ -116,6 +118,15 @@ Page({
         });
     },
     onLoad(options) {
+        //检查是否挂过号
+        const currentDateStorage = wx.getStorageSync("submitOrder");
+        let currentDate = getCurrentDay();
+        if (currentDateStorage && currentDateStorage === currentDate) {
+            this.setData({
+                searchDisabled: true,
+            });
+            return;
+        }
         const agreePrivacy = wx.getStorageSync("agreePrivacy");
         if (!agreePrivacy) {
             wx.showModal({

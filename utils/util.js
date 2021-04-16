@@ -1,21 +1,16 @@
-function formatTime(date) {
-  var year = date.getFullYear()
-  var month = date.getMonth() + 1
-  var day = date.getDate()
-
-  var hour = date.getHours()
-  var minute = date.getMinutes()
-  var second = date.getSeconds()
-
-
-  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+function getCurrentDay() {
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    return year.toString() + formatNumber(month) + formatNumber(day);
 }
 
 function formatNumber(n) {
-  n = n.toString()
-  return n[1] ? n : '0' + n
+    n = n.toString();
+    return n[1] ? n : "0" + n;
 }
 
 module.exports = {
-  formatTime: formatTime
-}
+    getCurrentDay: getCurrentDay,
+};

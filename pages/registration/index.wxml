@@ -1,5 +1,8 @@
 <wxs src="/utils/fmt.wxs" module="fmt" />
-<view class="container">
+<block wx:if="{{searchDisabled}}">
+    <van-empty image="error" description="今天你已经挂过号了，明天再来吧！" />
+</block>
+<view class="container" wx:else>
     <van-cell-group title="挂号信息">
         <van-field model:value="{{ username }}" label="姓名" placeholder="请输入姓名" />
         <van-field model:value="{{idCard}}" label="身份证号" placeholder="填写身份证号" />

@@ -1,0 +1,25 @@
+<block wx:if="{{feedbackTimes && feedbackTimes > 5}}">
+    <van-empty image="error" description="今天你已经提交{{ feedbackTimes }}次，明天再来吧！"/>
+</block>
+<block wx:else>
+    <van-field
+            label="姓名"
+            model:value="{{ name }}"
+            placeholder="如何称呼您"
+            clearable
+    />
+    <van-field
+            label="联系方式"
+            model:value="{{ contract }}"
+            placeholder="手机/微信/邮箱/QQ等"
+            clearable/>
+    <van-field
+            model:value="{{ content }}"
+            placeholder="请留下您的宝贵建议或意见～"
+            type="textarea"
+            autosize="{{ autosize }}"
+    />
+    <view class="block-btn btn">
+        <van-button type="primary" block bind:click="bindSave">提交反馈</van-button>
+    </view>
+</block>

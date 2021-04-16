@@ -23,6 +23,7 @@
             <van-cell is-link url="/pages/order/index" title="我的挂号"></van-cell>
             <van-cell is-link url="/pages/report/index" title="我的报告"></van-cell>
             <van-cell is-link url="/pages/binding/index" title="我的绑定"></van-cell>
+            <van-cell is-link url="/pages/feedback/index" title="意见反馈"></van-cell>
             <van-cell is-link url="/pages/about/index" title="关于"></van-cell>
         </van-cell-group>
     </block>

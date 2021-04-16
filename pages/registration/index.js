@@ -62,7 +62,7 @@ Page({
         showDoctor: false,
         showUnit: false,
         showDate: false,
-        maxDate: new Date().getTime(),
+        maxDate: null,
         dateFormatter(day) {
             const weekIndex = day.date.getDay();
             if (weekIndex === 1) {
@@ -134,14 +134,7 @@ Page({
                 },
             });
         }
-        let date = new Date();
-        let maxDateMilliSeconds = date.getTime() + 18.5 * 24 * 60 * 60 * 1000;
-        this.data.dateInterval = setInterval(() => {
-            maxDateMilliSeconds += 1000;
-            this.setData({
-                maxDate: maxDateMilliSeconds,
-            });
-        }, 1000);
+        this.getMaxDate();
     },
     onShow() {
         let username = wx.getStorageSync("username");
@@ -152,6 +145,25 @@ Page({
             idCard,
             tel,
         });
+    },
+    async getMaxDate() {
+        //获取服务器时间，并计算最大时间
+        const result = await request("/wechat/now", {});
+        if (result.code !== 0) {
+            wx.showModal({
+                title: "提示",
+                content: result.msg,
+                showCancel: false,
+            });
+        } else {
+            let maxDateMilliSeconds = result.data + 18.5 * 24 * 60 * 60 * 1000;
+            this.data.dateInterval = setInterval(() => {
+                maxDateMilliSeconds += 1000;
+                this.setData({
+                    maxDate: maxDateMilliSeconds,
+                });
+            }, 1000);
+        }
     },
     async search() {
         if (!this.data.username) {

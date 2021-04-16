@@ -1,0 +1,7 @@
+<view class="container">
+    <van-collapse value="{{activeNames}}" bind:change="onChange">
+        <van-collapse-item title="{{item.question}}" name="{{item.id}}" wx:for="{{questions}}" wx:key="id">
+            {{item.answer}}
+        </van-collapse-item>
+    </van-collapse>
+</view>

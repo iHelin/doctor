@@ -66,10 +66,10 @@ Page({
         showUnit: false,
         showDate: false,
         dateFormatter(day) {
-            const month = day.date.getMonth() + 1;
             const weekIndex = day.date.getDay();
             if (weekIndex === 1) {
-                day.topInfo = "*";
+                day.topInfo = "血液科";
+                day.bottomInfo = "移植和免疫";
             }
             if (weekIndex === 4) {
                 day.topInfo = "特需";

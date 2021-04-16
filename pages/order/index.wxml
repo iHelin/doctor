@@ -13,7 +13,8 @@
                 </view>
             </van-cell>
         </van-cell-group>
-        <view slot="right" class="van-swipe-cell__right" wx:if="{{item.exec_flag==='0'}}" bindtap="handleDismiss">取消
+        <view slot="right" class="van-swipe-cell__right" wx:if="{{item.exec_flag==='0'}}" data-item="{{item}}"
+            bindtap="handleDismiss">取消
         </view>
     </van-swipe-cell>
 </view>

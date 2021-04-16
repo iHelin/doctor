@@ -10,7 +10,6 @@
         "pages/binding/index",
         "pages/me/index",
         "pages/report/index",
-        "pages/test/test",
         "pages/confirm/index",
         "pages/feedback/index",
         "pages/reportDetail/index"

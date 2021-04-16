@@ -107,5 +107,16 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {},
+    onShareAppMessage() {
+        return {
+            title: "糖衣天使",
+            path: "/pages/index/index?inviterId=" + wx.getStorageSync("userId"),
+        };
+    },
+    onShareTimeline() {
+        return {
+            title: "糖衣天使",
+            query: "inviterId=" + wx.getStorageSync("userId"),
+        };
+    },
 });

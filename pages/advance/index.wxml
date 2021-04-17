@@ -2,8 +2,8 @@
 <view class="container">
     <van-cell-group title="挂号信息">
         <van-field model:value="{{ username }}" label="姓名" placeholder="请输入姓名" />
-        <van-field model:value="{{idCard}}" label="身份证号" placeholder="填写身份证号" />
-        <van-field model:value="{{tel}}" label="联系电话" placeholder="填写联系电话" type="number" pattern="[0-9]*" />
+        <van-field model:value="{{idCard}}" label="身份证号" placeholder="请输入身份证号" />
+        <van-field model:value="{{tel}}" label="联系电话" placeholder="请输入联系电话" type="number" pattern="[0-9]*" />
         <van-cell title="医生" bind:click="showDoctorPopup" value="{{doctors[doctorIndex].name}}" />
         <van-popup show="{{ showDoctor }}" position="bottom" bind:close="onDoctorClose">
             <van-picker show-toolbar bind:confirm="onDoctorClose" bind:cancel="onDoctorClose" columns="{{ doctors }}"

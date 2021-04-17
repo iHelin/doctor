@@ -38,21 +38,21 @@ Page({
     async bindSave() {
         if (!this.data.name) {
             wx.showToast({
-                title: '请填写您的姓名',
+                title: '请输入您的姓名',
                 icon: 'none',
             });
             return;
         }
         if (!this.data.contract) {
             wx.showToast({
-                title: '请填写联系方式',
+                title: '请输入联系方式',
                 icon: 'none',
             });
             return;
         }
         if (!this.data.content) {
             wx.showToast({
-                title: '请填写反馈信息',
+                title: '请输入反馈信息',
                 icon: 'none',
             });
             return;

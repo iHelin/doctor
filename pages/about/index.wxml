@@ -1,5 +1,5 @@
 <view class="container">
     <view class="weui-article">
-        <rich-text nodes="{{articleContent}}" space="nbsp"></rich-text>
+        <rich-text nodes="{{ articleContent }}" space="nbsp"></rich-text>
     </view>
 </view>

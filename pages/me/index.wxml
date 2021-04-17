@@ -4,8 +4,7 @@
             <image class="avatar" src="../../images/no-login.png"></image>
         </view>
         <view style="margin-top: 50rpx;">
-            <van-button type="primary" size="small" open-type="getUserInfo" bindgetuserinfo="login">授权登录
-            </van-button>
+            <van-button type="primary" size="small" bindtap="login">授权登录</van-button>
         </view>
     </view>
     <block wx:else>

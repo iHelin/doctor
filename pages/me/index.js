@@ -21,29 +21,38 @@ Page({
         }
     },
     login(e) {
-        if (e.detail.errMsg === "getUserInfo:ok") {
-            let userInfo = e.detail.userInfo;
-            wx.login({
-                success: async (res) => {
-                    const result = await request(
-                        "/wechat/login",
-                        {
-                            code: res.code,
-                            nickname: userInfo.nickName,
-                            avatarUrl: userInfo.avatarUrl,
-                        },
-                        "POST"
-                    );
-                    if (result.code === 0) {
-                        this.setData({
-                            hasLogin: true,
-                        });
-                        wx.setStorageSync("token", result.data.token);
-                        this.getUserInfo(result.data);
-                    }
-                },
-            });
-        }
+        wx.getUserProfile({
+            desc: "用于完善用户信息",
+            success: (e) => {
+                let userInfo = e.userInfo;
+                wx.login({
+                    success: async (res) => {
+                        const result = await request(
+                            "/wechat/login",
+                            {
+                                code: res.code,
+                                nickname: userInfo.nickName,
+                                avatarUrl: userInfo.avatarUrl,
+                                // 0 未知 1 男性 2 女性
+                                gender: userInfo.gender,
+                                country: userInfo.country,
+                                province: userInfo.province,
+                                city: userInfo.city,
+                                language: userInfo.language,
+                            },
+                            "POST"
+                        );
+                        if (result.code === 0) {
+                            this.setData({
+                                hasLogin: true,
+                            });
+                            wx.setStorageSync("token", result.data.token);
+                            this.getUserInfo(result.data);
+                        }
+                    },
+                });
+            },
+        });
     },
     async getUserInfo() {
         const result = await request("/wechat/me", {}, "get");

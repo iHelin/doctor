@@ -167,7 +167,7 @@ Page({
                 showCancel: false,
             });
         } else {
-            let maxDateMilliSeconds = result.data + 18.5 * 24 * 60 * 60 * 1000;
+            let maxDateMilliSeconds = result.data + 19.5 * 24 * 60 * 60 * 1000;
             this.data.dateInterval = setInterval(() => {
                 maxDateMilliSeconds += 1000;
                 this.setData({

@@ -28,7 +28,7 @@ Page({
             {
                 name: "戴海萍",
                 code: "02904",
-                chargeType: "4",
+                chargeType: "3",
             },
             {
                 name: "普通号",
